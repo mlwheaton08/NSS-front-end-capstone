@@ -1,0 +1,2 @@
+// maybe fetch all relevant articles, but only display a certain amount (have pages), so that the page isn't slow.
+    // or eventually maybe try a "load more as you scroll down" kinda thing if it's doable
