@@ -1,53 +1,89 @@
 import { useEffect, useState } from "react"
+import { ArticleCard } from "../articles/ArticleCard"
 
 export const Home = () => {
-    const [articles, setArticles] = useState([])
+    // const [articles, setArticles] = useState([])
+    
+    const [randomCategory, setRandomCategory] = useState({})
+    const [randomSubCategory, setRandomSubCategory] = useState({})
     const [randomArticle, setRandomArticle] = useState({})
 
-    // ------ FETCH ARTICLES ------------------------
-    const fetchArticles = async () => {
-        const response = await fetch('http://localhost:8088/articles')
-        const responseJSON = await response.json()
-        setArticles(responseJSON)
-        // console.log(responseJSON)
+    const fetchRandomCategory = async () => {
+        const catResponse = await fetch('http://localhost:8088/categories')
+        const catResponseJSON = await catResponse.json()
+        console.log(catResponseJSON)
+        const randomIndex = Math.floor(Math.random() * catResponseJSON.length)
+        setRandomCategory(catResponseJSON[randomIndex])
+        console.log(`random category: ${catResponseJSON[randomIndex].name}`)
     }
-    
+
     useEffect(
         () => {
-            fetchArticles()
+            fetchRandomCategory()
         },
         []
     )
 
-    // ---------- GET RANDOM ARTICLE ------------------
-    const getRandomArticle = () => {
-        const randomIndex = Math.floor(Math.random() * articles.length)
-        setRandomArticle(articles[randomIndex])
-        console.log('random index: ' + randomIndex)
+    const fetchRandomSubCategory = async () => {
+        const subCatResponse = await fetch(`http://localhost:8088/categories/${randomCategory.id}?_embed=subCategories`)
+        const subCatResponseJSON = await subCatResponse.json()
+        if (subCatResponseJSON.subCategories === undefined) {
+            setRandomSubCategory(undefined)
+        } else {
+            const subCategories = subCatResponseJSON.subCategories
+            const randomIndex = Math.floor(Math.random() * subCategories.length)
+            setRandomSubCategory(subCategories[randomIndex])
+            console.log(`random subCategory: ${subCategories[randomIndex].name}`)
+        }
     }
 
     useEffect(
         () => {
-            getRandomArticle()
+            fetchRandomSubCategory()
         },
-        [articles]
+        [randomCategory]
     )
 
-    // ------- THIS IS ONLY HERE TO CONSOLE.LOG AFTER RANDOM ARTICLE IS SET. WHEN IN OTHER USE EFFECT, IT CONSOLE LOGS TOO EARLY AND SHOWS UNDEFINED
+    const fetchRandomArticle = async () => {
+        if (randomSubCategory !== undefined) {
+            const articleResponse = await fetch(`http://localhost:8088/subCategories/${randomSubCategory.id}?_embed=articles`)
+            const articleResponseJSON = await articleResponse.json()
+            const articles = articleResponseJSON.articles
+            const randomIndex = Math.floor(Math.random() * articles.length)
+            setRandomArticle(articles[randomIndex])
+            console.log(`random article: ${articles[randomIndex].title}`)
+        } else {
+            const articleResponse = await fetch(`http://localhost:8088/categories/${randomCategory.id}?_embed=articles`)
+            const articleResponseJSON = await articleResponse.json()
+            const articles = articleResponseJSON.articles
+            const randomIndex = Math.floor(Math.random() * articles.length)
+            setRandomArticle(articles[randomIndex])
+            console.log(`random article: ${articles[randomIndex].title}`)
+        }
+    }
+
     useEffect(
         () => {
-            console.log(randomArticle?.title + ' : ' + randomArticle?.teasertext)
+            fetchRandomArticle()
         },
-        [randomArticle]
+        [randomSubCategory]
     )
 
 
     return <>
-    <h1>Hello, this is the homepage.</h1>
-    {
-        <h3>title: {randomArticle?.title} : {randomArticle?.teasertext}</h3>
-    }
-    <button onClick={() => getRandomArticle()}>Next</button>
+
+        <ArticleCard
+            category={randomCategory}
+            subCategory={randomSubCategory}
+            article={randomArticle}
+        />
+
+        <button onClick={() => fetchRandomCategory()}>Next</button>
+        <button onClick={() => fetchRandomSubCategory()}>Keep Category</button>
+        {
+            randomSubCategory
+            ? <button onClick={() => fetchRandomArticle()}>Keep SubCategory</button>
+            : ""
+        }
     </>
-    // button onclick setRandomArticle
 }
