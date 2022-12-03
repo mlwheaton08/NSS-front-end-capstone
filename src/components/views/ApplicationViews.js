@@ -1,4 +1,5 @@
 import { Outlet, Route, Routes } from "react-router-dom";
+import { Browse } from "../browse/Browse";
 import { Home } from "../home/Home";
 
 export const ApplicationViews = () => {
@@ -11,12 +12,13 @@ export const ApplicationViews = () => {
                 <>
                     <h1>Aimless</h1>
                     <div>Learn about random shit.</div>
-					<Home />
 
                     <Outlet />
                 </>
             }>
-
+            
+            <Route path="/" element={ <Home/> } />
+            <Route path="browse" element={ <Browse/> } />
 				
             </Route>
         </Routes>

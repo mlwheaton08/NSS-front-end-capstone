@@ -11,7 +11,6 @@ export const Home = () => {
     const fetchRandomCategory = async () => {
         const catResponse = await fetch('http://localhost:8088/categories')
         const catResponseJSON = await catResponse.json()
-        console.log(catResponseJSON)
         const randomIndex = Math.floor(Math.random() * catResponseJSON.length)
         setRandomCategory(catResponseJSON[randomIndex])
         console.log(`random category: ${catResponseJSON[randomIndex].name}`)
@@ -27,13 +26,12 @@ export const Home = () => {
     const fetchRandomSubCategory = async () => {
         const subCatResponse = await fetch(`http://localhost:8088/categories/${randomCategory.id}?_embed=subCategories`)
         const subCatResponseJSON = await subCatResponse.json()
-        if (subCatResponseJSON.subCategories === undefined) {
-            setRandomSubCategory(undefined)
+        if (subCatResponseJSON.subCategories.length === 0) {
+            setRandomSubCategory("")
         } else {
             const subCategories = subCatResponseJSON.subCategories
             const randomIndex = Math.floor(Math.random() * subCategories.length)
             setRandomSubCategory(subCategories[randomIndex])
-            console.log(`random subCategory: ${subCategories[randomIndex].name}`)
         }
     }
 
@@ -45,21 +43,18 @@ export const Home = () => {
     )
 
     const fetchRandomArticle = async () => {
-        if (randomSubCategory !== undefined) {
-            const articleResponse = await fetch(`http://localhost:8088/subCategories/${randomSubCategory.id}?_embed=articles`)
-            const articleResponseJSON = await articleResponse.json()
-            const articles = articleResponseJSON.articles
-            const randomIndex = Math.floor(Math.random() * articles.length)
-            setRandomArticle(articles[randomIndex])
-            console.log(`random article: ${articles[randomIndex].title}`)
-        } else {
-            const articleResponse = await fetch(`http://localhost:8088/categories/${randomCategory.id}?_embed=articles`)
-            const articleResponseJSON = await articleResponse.json()
-            const articles = articleResponseJSON.articles
-            const randomIndex = Math.floor(Math.random() * articles.length)
-            setRandomArticle(articles[randomIndex])
-            console.log(`random article: ${articles[randomIndex].title}`)
+        let parent = randomSubCategory
+        if (!randomSubCategory) {
+            parent = randomCategory
         }
+
+        const articleResponse = await fetch(`http://localhost:8088/subCategories/${parent.id}?_embed=articles`)
+        const articleResponseJSON = await articleResponse.json()
+        const articles = articleResponseJSON.articles
+        const randomIndex = Math.floor(Math.random() * articles.length)
+        setRandomArticle(articles[randomIndex])
+        console.log(`random article: ${articles[randomIndex].title}`)
+        
     }
 
     useEffect(
@@ -79,11 +74,13 @@ export const Home = () => {
         />
 
         <button onClick={() => fetchRandomCategory()}>Next</button>
-        <button onClick={() => fetchRandomSubCategory()}>Keep Category</button>
         {
             randomSubCategory
-            ? <button onClick={() => fetchRandomArticle()}>Keep SubCategory</button>
-            : ""
+            ? <>
+                <button onClick={() => fetchRandomSubCategory()}>Keep Category</button>
+                <button onClick={() => fetchRandomArticle()}>Keep SubCategory</button>
+            </>
+            : <button onClick={() => fetchRandomArticle()}>Keep Category</button>
         }
     </>
 }

@@ -1,0 +1,12 @@
+.articleCard {
+    border: 1px solid gray;
+}
+
+.articleTitle {
+    text-align: center;
+}
+
+.articleHeader {
+    display: flex;
+    justify-content: space-between;
+}
