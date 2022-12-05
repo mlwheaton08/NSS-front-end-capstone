@@ -3,28 +3,20 @@ import { ArticleCard } from "../articles/ArticleCard"
 
 export const Browse = () => {
 
-    const [pageNumber, setPageNumber] = useState(1)
+    let [pageNumber, setPageNumber] = useState(1)
 
     const nextPage = () => {
-        const num = pageNumber
-        setPageNumber(num += 1)
+        setPageNumber(pageNumber += 1)
     }
 
     const previousPage = () => {
-        const num = pageNumber
-        setPageNumber(num -= 1)
+        setPageNumber(pageNumber -= 1)
     }
-
-    useEffect(
-        () => {
-            fetchArticles()
-        },
-        [pageNumber]
-    )
 
     const [articles, setArticles] = useState([])
 
     const fetchArticles = async () => {
+        console.log(pageNumber)
         const response = await fetch(`http://localhost:8088/articles?_page=${pageNumber}&_limit=20&_expand=category&_expand=subCategory`)
         const responseJSON = await response.json()
         setArticles(responseJSON)
@@ -35,6 +27,13 @@ export const Browse = () => {
             fetchArticles()
         },
         []
+    )
+
+    useEffect(
+        () => {
+            fetchArticles()
+        },
+        [pageNumber]
     )
 
     return <>
