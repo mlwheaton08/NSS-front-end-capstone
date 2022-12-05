@@ -1,29 +1,22 @@
 import { useEffect, useState } from "react"
+import { Link, useParams } from "react-router-dom"
 import { ArticleCard } from "../articles/ArticleCard"
 
 export const Browse = () => {
-
-    let [pageNumber, setPageNumber] = useState(1)
-
-    const nextPage = () => {
-        setPageNumber(pageNumber += 1)
-    }
-
-    const previousPage = () => {
-        setPageNumber(pageNumber -= 1)
-    }
-
+    const {pageNumber} = useParams()
+    const [page, setPage] = useState(parseInt(pageNumber))
     const [articles, setArticles] = useState([])
 
     const fetchArticles = async () => {
-        console.log(pageNumber)
-        const response = await fetch(`http://localhost:8088/articles?_page=${pageNumber}&_limit=20&_expand=category&_expand=subCategory`)
+        console.log(page)
+        const response = await fetch(`http://localhost:8088/articles?_page=${page}&_limit=20&_expand=category&_expand=subCategory`)
         const responseJSON = await response.json()
         setArticles(responseJSON)
     }
 
     useEffect(
         () => {
+            setPage(parseInt(pageNumber))
             fetchArticles()
         },
         []
@@ -33,18 +26,19 @@ export const Browse = () => {
         () => {
             fetchArticles()
         },
-        [pageNumber]
+        [page]
     )
+
 
     return <>
         
         <h1>Browse Page</h1>
         {
-            pageNumber === 1
+            page === 1
             ? ""
-            : <button onClick={() => previousPage()}>Page {pageNumber - 1}</button>
+            : <Link to={`/browse/${page - 1}`} onClick={() => setPage(page - 1)}>Page {page - 1}</Link>
         }
-        <button onClick={() => nextPage()}>Page {pageNumber + 1}</button>
+        <Link to={`/browse/${page + 1}`} onClick={() => setPage(page + 1)}>Page {page + 1}</Link>
 
         <article className="browseArticles">
         {

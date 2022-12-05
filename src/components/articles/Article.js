@@ -29,8 +29,9 @@ export const Article = () => {
     )
 
     console.log(articleTitle)
-
-
-    // return <h1>{articleTitle}</h1>
-    return <div className="Container" dangerouslySetInnerHTML={{__html: articleText}}></div>
+ 
+    return <>
+        <h1>{articleTitle}</h1>
+        <div className="Container" dangerouslySetInnerHTML={{__html: articleText}}></div>
+    </>
 }

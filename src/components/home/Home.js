@@ -2,8 +2,6 @@ import { useEffect, useState } from "react"
 import { ArticleCard } from "../articles/ArticleCard"
 
 export const Home = () => {
-    // const [articles, setArticles] = useState([])
-    
     const [randomCategory, setRandomCategory] = useState({})
     const [randomSubCategory, setRandomSubCategory] = useState({})
     const [randomArticle, setRandomArticle] = useState({})
@@ -13,7 +11,6 @@ export const Home = () => {
         const catResponseJSON = await catResponse.json()
         const randomIndex = Math.floor(Math.random() * catResponseJSON.length)
         setRandomCategory(catResponseJSON[randomIndex])
-        console.log(`random category: ${catResponseJSON[randomIndex].name}`)
     }
 
     useEffect(
@@ -53,15 +50,13 @@ export const Home = () => {
         const articles = articleResponseJSON.articles
         const randomIndex = Math.floor(Math.random() * articles.length)
         setRandomArticle(articles[randomIndex])
-        console.log(`random article: ${articles[randomIndex].title}`)
-        
     }
 
     useEffect(
         () => {
             fetchRandomArticle()
         },
-        [randomSubCategory]
+        [randomCategory, randomSubCategory]
     )
 
 
@@ -77,7 +72,7 @@ export const Home = () => {
         {
             randomSubCategory
             ? <>
-                <button onClick={() => fetchRandomSubCategory()}>Keep Category</button>
+                <button onClick={() =>fetchRandomSubCategory()}>Keep Category</button>
                 <button onClick={() => fetchRandomArticle()}>Keep SubCategory</button>
             </>
             : <button onClick={() => fetchRandomArticle()}>Keep Category</button>
