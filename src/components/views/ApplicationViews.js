@@ -19,7 +19,7 @@ export const ApplicationViews = () => {
             }>
             
             <Route path="/" element={ <Home/> } />
-            <Route path="browse" element={ <Browse/> } />
+            <Route path="browse/:pageNumber" element={ <Browse/> } />
             <Route path="article/:articleTitle" element={ <Article/> } />
 				
             </Route>

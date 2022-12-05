@@ -10,7 +10,7 @@ export const NavBar = () => {
                 <Link className="navbar__link" to="/">Home</Link>
             </li>
             <li className="navbar__item active">
-                <Link className="navbar__link" to="/browse">Browse</Link>
+                <Link className="navbar__link" to="/browse/1">Browse</Link>
             </li>
             {
                 localStorage.getItem("capstone_user")
