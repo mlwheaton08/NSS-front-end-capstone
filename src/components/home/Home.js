@@ -43,12 +43,12 @@ export const Home = () => {
     )
 
     const fetchRandomArticle = async () => {
-        let parent = randomSubCategory
+        let url = `http://localhost:8088/subCategories/${randomSubCategory.id}?_embed=articles`
         if (!randomSubCategory) {
-            parent = randomCategory
+            url =  `http://localhost:8088/categories/${randomCategory.id}?_embed=articles`
         }
 
-        const articleResponse = await fetch(`http://localhost:8088/subCategories/${parent.id}?_embed=articles`)
+        const articleResponse = await fetch(url)
         const articleResponseJSON = await articleResponse.json()
         const articles = articleResponseJSON.articles
         const randomIndex = Math.floor(Math.random() * articles.length)

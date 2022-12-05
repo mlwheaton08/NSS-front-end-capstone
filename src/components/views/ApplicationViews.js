@@ -1,4 +1,5 @@
 import { Outlet, Route, Routes } from "react-router-dom";
+import { Article } from "../articles/Article";
 import { Browse } from "../browse/Browse";
 import { Home } from "../home/Home";
 
@@ -19,6 +20,7 @@ export const ApplicationViews = () => {
             
             <Route path="/" element={ <Home/> } />
             <Route path="browse" element={ <Browse/> } />
+            <Route path="article/:articleTitle" element={ <Article/> } />
 				
             </Route>
         </Routes>

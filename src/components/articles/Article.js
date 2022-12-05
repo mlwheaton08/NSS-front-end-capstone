@@ -1,14 +1,15 @@
-export const Article = () => {
-        const [article, setArticle] = useState("")
+import { useEffect, useState } from "react"
+import { useParams } from "react-router-dom"
 
-    const APIWiki = 'https://en.wikipedia.org/w/api.php?action=parse&format=json&page=Pizza_farm&redirects=1&prop=text&formatversion=2'
-    const APIWiki2 = 'https://en.wikipedia.org/w/api.php?action=parse&format=json&page=Wikipedia%3AUnusual_articles%2FMathematics_and_numbers&redirects=1&prop=text&formatversion=2'
+export const Article = () => {
+    const {articleTitle} = useParams()
+    const [articleText, setArticleText] = useState("")
 
     useEffect(
         () => {
-        const fetchWiki = async () => {
-
-            const response = await fetch(APIWiki)
+            const fetchWiki = async () => {
+            const API = `https://en.wikipedia.org/w/api.php?action=parse&format=json&page=${articleTitle}&redirects=1&prop=text&formatversion=2`
+            const response = await fetch(API)
             const responseJSON = await response.json()
             const text = responseJSON.parse.text
             // console.log(text)
@@ -19,7 +20,7 @@ export const Article = () => {
             const referencesIndex = text.search('<h2><span class="mw-headline" id="References">')
             console.log(referencesIndex)
             const sliceReferences = text.slice(0, referencesIndex - 1)
-            setArticle(sliceReferences)
+            setArticleText(sliceReferences)
             console.log(sliceReferences)
         }
         fetchWiki()
@@ -27,6 +28,9 @@ export const Article = () => {
         []
     )
 
-    // return <h1>Hello</h1>
-    return <div className="Container" dangerouslySetInnerHTML={{__html: article}}></div>
+    console.log(articleTitle)
+
+
+    // return <h1>{articleTitle}</h1>
+    return <div className="Container" dangerouslySetInnerHTML={{__html: articleText}}></div>
 }
