@@ -1,11 +1,10 @@
 import { Outlet, Route, Routes } from "react-router-dom";
 import { Article } from "../articles/Article";
 import { Browse } from "../browse/Browse";
+import { Favorites } from "../favorites/Favorites";
 import { Home } from "../home/Home";
 
 export const ApplicationViews = () => {
-    // const localProjectUser = localStorage.getItem("capstone_user");
-    // const projectUserObject = JSON.parse(localProjectUser);
 
     return (
         <Routes>
@@ -20,6 +19,7 @@ export const ApplicationViews = () => {
             
             <Route path="/" element={ <Home/> } />
             <Route path="browse/:pageNumber" element={ <Browse/> } />
+            <Route path="favorites" element={ <Favorites/> } />
             <Route path="article/:articleTitle" element={ <Article/> } />
 				
             </Route>

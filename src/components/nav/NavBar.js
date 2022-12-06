@@ -12,6 +12,9 @@ export const NavBar = () => {
             <li className="navbar__item active">
                 <Link className="navbar__link" to="/browse/1">Browse</Link>
             </li>
+            <li className="navbar__item active">
+                <Link className="navbar__link" to="/favorites">Favorites</Link>
+            </li>
             {
                 localStorage.getItem("capstone_user")
                 ? <li className="navbar__item navbar__logout">
