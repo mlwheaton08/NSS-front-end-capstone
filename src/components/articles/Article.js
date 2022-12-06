@@ -18,17 +18,14 @@ export const Article = () => {
             // classes, etc. but that is not priority currently
             // maybe i should remove anchor tags. unless i want the links to go somewhere? idk, probably not for mvp tho
             const referencesIndex = text.search('<h2><span class="mw-headline" id="References">')
-            console.log(referencesIndex)
             const sliceReferences = text.slice(0, referencesIndex - 1)
             setArticleText(sliceReferences)
-            console.log(sliceReferences)
         }
         fetchWiki()
         },
         []
     )
-
-    console.log(articleTitle)
+    
  
     return <>
         <h1>{articleTitle}</h1>
