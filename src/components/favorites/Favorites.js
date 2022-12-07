@@ -7,13 +7,14 @@ export const Favorites = () => {
 
     const [favoriteArticles, setFavoriteArticles] = useState([])
 
+    const fetchFavorites = async () => {
+        const response = await fetch(`http://localhost:8088/favorites?userId=${projectUserObject.id}&_expand=article&_expand=category&_expand=subCategory`)
+        const responseJSON = await response.json()
+        setFavoriteArticles(responseJSON)
+    }
+
     useEffect(
         () => {
-            const fetchFavorites = async () => {
-                const response = await fetch(`http://localhost:8088/favorites?userId=${projectUserObject.id}&_expand=article&_expand=category&_expand=subCategory`)
-                const responseJSON = await response.json()
-                setFavoriteArticles(responseJSON)
-            }
             fetchFavorites()
         },
         []
@@ -29,6 +30,7 @@ export const Favorites = () => {
                     category={favorite.category}
                     subCategory={favorite.subCategory}
                     article={favorite.article}
+                    fetchFavorites={fetchFavorites}
                 />
             })
         }
