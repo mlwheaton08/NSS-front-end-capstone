@@ -1,9 +1,12 @@
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
+import { Comment } from "../comments/Comment"
 
 export const Article = () => {
     const {articleTitle} = useParams()
     const [articleText, setArticleText] = useState("")
+    const [articleLocal, setArticleLocal] = useState({})
+    const [comments, setComments] = useState([])
 
     useEffect(
         () => {
@@ -25,10 +28,42 @@ export const Article = () => {
         },
         []
     )
+
+    useEffect(
+        () => {
+            const fetchArticleLocal = async () => {
+                const response = await fetch(`http://localhost:8088/articles?title=${articleTitle}&_embed=comments`)
+                const responseJSON = await response.json()
+                setArticleLocal(responseJSON[0])
+            }
+            fetchArticleLocal()
+        },
+        []
+    )
+
+    useEffect(
+        () => {
+            const fetchComments = async () => {
+                const response = await fetch(`http://localhost:8088/comments?articleId=${articleLocal.id}&_expand=user`)
+                const responseJSON = await response.json()
+                setComments(responseJSON)
+            }
+            fetchComments()
+        },
+        [articleLocal]
+    )
     
  
     return <>
         <h1>{articleTitle}</h1>
+        {
+            comments.map(comment => {
+                return <Comment
+                    key={`comment--${comment.id}`}
+                    comment={comment}
+                />
+            })
+        }
         <div className="Container" dangerouslySetInnerHTML={{__html: articleText}}></div>
     </>
 }

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom"
 import "./ArticleCard.css"
 
-export const ArticleCard = ({ category, subCategory, article }) => {
+export const ArticleCard = ({ category, subCategory, article, fetchFavorites }) => {
     const localProjectUser = localStorage.getItem("capstone_user");
     const projectUserObject = JSON.parse(localProjectUser);
 
@@ -62,16 +62,17 @@ export const ArticleCard = ({ category, subCategory, article }) => {
             })
         }
         await deleteFavorite()
-        checkIsFavorite()
+        await checkIsFavorite()
+        fetchFavorites()
     }
 
     
     return <>
             <div className="articleCard">
                 <div className="articleHeader">
-                    <span className="articleCategory">{category?.name}
+                    <span className="articleCategory">{category.name}
                         {
-                            subCategory ? " - " + subCategory?.name : ""
+                            subCategory.name !== "No subcategory" ? " - " + subCategory.name : ""
                         }
                     </span>
                     {
@@ -81,7 +82,7 @@ export const ArticleCard = ({ category, subCategory, article }) => {
                     }
                 </div>
 
-                <Link to={`/article/${article?.title}`}>
+                <Link to={`/article/${article.title}`}>
                     <h3 className="articleTitle">{article?.title}</h3>
                     <p className="articleTeaserText">{article?.teaserText}</p>
                 </Link>

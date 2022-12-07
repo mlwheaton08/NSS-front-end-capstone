@@ -23,13 +23,9 @@ export const Home = () => {
     const fetchRandomSubCategory = async () => {
         const subCatResponse = await fetch(`http://localhost:8088/categories/${randomCategory.id}?_embed=subCategories`)
         const subCatResponseJSON = await subCatResponse.json()
-        if (subCatResponseJSON.subCategories.length === 0) {
-            setRandomSubCategory("")
-        } else {
-            const subCategories = subCatResponseJSON.subCategories
-            const randomIndex = Math.floor(Math.random() * subCategories.length)
-            setRandomSubCategory(subCategories[randomIndex])
-        }
+        const subCategories = await subCatResponseJSON.subCategories
+        const randomIndex = Math.floor(Math.random() * subCategories.length)
+        setRandomSubCategory(subCategories[randomIndex])
     }
 
     useEffect(
@@ -41,13 +37,13 @@ export const Home = () => {
 
     const fetchRandomArticle = async () => {
         let url = `http://localhost:8088/subCategories/${randomSubCategory.id}?_embed=articles`
-        if (!randomSubCategory) {
+        if (randomSubCategory.name === "No subcategory") {
             url =  `http://localhost:8088/categories/${randomCategory.id}?_embed=articles`
         }
 
         const articleResponse = await fetch(url)
         const articleResponseJSON = await articleResponse.json()
-        const articles = articleResponseJSON.articles
+        const articles = await articleResponseJSON.articles
         const randomIndex = Math.floor(Math.random() * articles.length)
         setRandomArticle(articles[randomIndex])
     }
@@ -70,12 +66,12 @@ export const Home = () => {
 
         <button onClick={() => fetchRandomCategory()}>Next</button>
         {
-            randomSubCategory
-            ? <>
-                <button onClick={() =>fetchRandomSubCategory()}>Keep Category</button>
+            randomSubCategory.name === "No subcategory"
+            ? <button onClick={() =>fetchRandomSubCategory()}>Keep Category</button>
+            : <>
                 <button onClick={() => fetchRandomArticle()}>Keep SubCategory</button>
+                <button onClick={() => fetchRandomArticle()}>Keep Category</button>
             </>
-            : <button onClick={() => fetchRandomArticle()}>Keep Category</button>
         }
     </>
 }
