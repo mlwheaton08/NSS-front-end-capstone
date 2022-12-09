@@ -38,7 +38,6 @@ export const CommentForm = ({ userId, articleId, fetchComments }) => {
                 <input
                     required autoFocus
                     type="text"
-                    className="form-control"
                     placeholder="Comment here..."
                     value={comment.text}
                     onChange={
