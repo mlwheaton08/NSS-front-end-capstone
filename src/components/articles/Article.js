@@ -70,6 +70,7 @@ export const Article = () => {
                     return <Comment
                         key={`comment--${comment.id}`}
                         comment={comment}
+                        fetchComments={fetchComments}
                     />
                 })
             }
