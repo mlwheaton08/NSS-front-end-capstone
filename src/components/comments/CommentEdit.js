@@ -42,12 +42,22 @@ export const CommentEdit = ({ comment, fetchComments }) => {
         fetchComments()
     }
 
+    const deleteComment = async () => {
+        await fetch(`http://localhost:8088/comments/${comment.id}`, {
+            method: "DELETE"
+        })
+        fetchComments()
+    }
+
 
     return (
         comment.userId !== projectUserObject.id
             ? ""
             : !editing
-                ? <button onClick={() => setEditing(true)}>Edit</button>
+                ? <>
+                    <button onClick={() => setEditing(true)}>Edit</button>
+                    <button onClick={() => deleteComment()}>Delete</button>
+                </>
                 : <form className="commentForm editComment">
                     <fieldset>
                         <input
@@ -73,6 +83,7 @@ export const CommentEdit = ({ comment, fetchComments }) => {
                         onClick={() => fetchComments()}>
                         Discard Changes
                     </button>
+                    <button onClick={() => deleteComment()}>DeleteComment</button>
                 </form>
     )
 }
