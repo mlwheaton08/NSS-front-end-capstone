@@ -2,22 +2,32 @@ import { useEffect, useState } from "react"
 import { Link, useNavigate, useParams } from "react-router-dom"
 import { ArticleCard } from "../articles/ArticleCard"
 
-export const Browse = ({searchTermState }) => {
+export const Browse = ({ searchTermState }) => {
     const {pageNumber} = useParams()
     const [page, setPage] = useState(parseInt(pageNumber))
     const [articles, setArticles] = useState([])
     const navigate = useNavigate()
 
-    const fetchArticles = async () => {
-        if (searchTermState) {
-            const response = await fetch(`http://localhost:8088/articles?q=${searchTermState}&_page=${page}&_limit=20&_expand=category&_expand=subCategory`)
-            const responseJSON = await response.json()
-            setArticles(responseJSON)
-        } else {
-            const response = await fetch(`http://localhost:8088/articles?_page=${page}&_limit=20&_expand=category&_expand=subCategory`)
-            const responseJSON = await response.json()
-            setArticles(responseJSON)
+    const getAPI = () => {
+        let API = `http://localhost:8088/articles?_page=${page}&_limit=20&_expand=category&_expand=subCategory`
+        if (searchTermState.search) {
+            API += `&q=${searchTermState.search}`
         }
+        if (searchTermState.categoryId) {
+            API += `&categoryId=${searchTermState.categoryId}`
+        }
+        if (searchTermState.subCategoryId) {
+            API += `&subCategoryId=${searchTermState.subCategoryId}`
+        }
+        return API
+    }
+
+    const fetchArticles = async () => {
+        const API = getAPI()
+        console.log(API)
+        const response = await fetch(API)
+        const responseJSON = await response.json()
+        setArticles(responseJSON)
     }
 
     useEffect(
