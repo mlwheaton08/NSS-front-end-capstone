@@ -1,16 +1,23 @@
 import { useEffect, useState } from "react"
-import { Link, useParams } from "react-router-dom"
+import { Link, useNavigate, useParams } from "react-router-dom"
 import { ArticleCard } from "../articles/ArticleCard"
 
-export const Browse = () => {
+export const Browse = ({searchTermState }) => {
     const {pageNumber} = useParams()
     const [page, setPage] = useState(parseInt(pageNumber))
     const [articles, setArticles] = useState([])
+    const navigate = useNavigate()
 
     const fetchArticles = async () => {
-        const response = await fetch(`http://localhost:8088/articles?_page=${page}&_limit=20&_expand=category&_expand=subCategory`)
-        const responseJSON = await response.json()
-        setArticles(responseJSON)
+        if (searchTermState) {
+            const response = await fetch(`http://localhost:8088/articles?q=${searchTermState}&_page=${page}&_limit=20&_expand=category&_expand=subCategory`)
+            const responseJSON = await response.json()
+            setArticles(responseJSON)
+        } else {
+            const response = await fetch(`http://localhost:8088/articles?_page=${page}&_limit=20&_expand=category&_expand=subCategory`)
+            const responseJSON = await response.json()
+            setArticles(responseJSON)
+        }
     }
 
     useEffect(
@@ -30,8 +37,16 @@ export const Browse = () => {
 
 
     return <>
+        <div>
+            <button onClick={() => {
+                navigate("/browse/1")
+                setPage(1)
+                fetchArticles()
+                }
+            }>Search</button>
+        </div>
         
-        <h1>Browse Page</h1>
+        <h1>Browse</h1>
         {
             page === 1
             ? ""
