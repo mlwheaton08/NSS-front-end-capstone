@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
 
-export const ArticleSearch = ({ searchTerms, setSearchTerms }) => {
+export const ArticleSearch = ({ searchTermState, setSearchTerms }) => {
     const [categoryOptions, setCategoryOptions] = useState([])
     const [selectedCategoryId, setSelectedCategoryId] = useState("")
     const [subCategoryOptions, setSubCategoryOptions] = useState([])
@@ -22,12 +22,17 @@ export const ArticleSearch = ({ searchTerms, setSearchTerms }) => {
             const fetchSubCategories = async () => {
                 const response = await fetch(`http://localhost:8088/subCategories?categoryId=${selectedCategoryId}`)
                 const responseJSON = await response.json()
-                setSubCategoryOptions(responseJSON)
+                if (responseJSON.length <= 1) {
+                    setSubCategoryOptions([])
+                } else {
+                    setSubCategoryOptions(responseJSON)
+                }
             }
             fetchSubCategories()
         },
         [selectedCategoryId]
     )
+
 
     return <>
         <form>
@@ -37,7 +42,9 @@ export const ArticleSearch = ({ searchTerms, setSearchTerms }) => {
                     placeholder="Search..."
                     onChange={
                         (evt) => {
-                            setSearchTerms(evt.target.value)
+                            const copy = {...searchTermState}
+                            copy.search = evt.target.value
+                            setSearchTerms(copy)
                         }
                     }
                 />
@@ -47,8 +54,9 @@ export const ArticleSearch = ({ searchTerms, setSearchTerms }) => {
             <select name="categories"
                 onChange={
                     (evt) => {
-                        const copy = {...setSearchTerms}
+                        const copy = {...searchTermState}
                         copy.categoryId = evt.target.value
+                        copy.subCategoryId = ""
                         setSearchTerms(copy)
                         setSelectedCategoryId(evt.target.value)
                     }
@@ -62,31 +70,29 @@ export const ArticleSearch = ({ searchTerms, setSearchTerms }) => {
                 }
             </select>
 
-            <>
-                {
-                    !selectedCategoryId || subCategoryOptions[0].name === "No subcategory"
-                        ? ""
-                        : <>
-                            <label htmlFor="subCategories">Subcategory</label>
-                            <select name="subCategories"
-                                onChange={
-                                    (evt) => {
-                                        const copy = {...setSearchTerms}
-                                        copy.subCategoryId = evt.target.value
-                                        setSearchTerms(copy)
-                                    }
+            {
+                subCategoryOptions.length <= 1
+                    ? ""
+                    : <>
+                        <label htmlFor="subCategories">Subcategory</label>
+                        <select name="subCategories"
+                            onChange={
+                                (evt) => {
+                                    const copy = {...searchTermState}
+                                    copy.subCategoryId = evt.target.value
+                                    setSearchTerms(copy)
                                 }
-                            >
-                                <option value=""></option>
-                                {
-                                    subCategoryOptions.map((subCategory) => {
-                                        return <option value={subCategory.id} key={`subCategory--${subCategory.id}`}>{subCategory.name}</option>
-                                    })
-                                }
-                            </select>
-                        </>
-                }
-            </>
+                            }
+                        >
+                            <option value=""></option>
+                            {
+                                subCategoryOptions.map((subCategory) => {
+                                    return <option value={subCategory.id} key={`subCategory--${subCategory.id}`}>{subCategory.name}</option>
+                                })
+                            }
+                        </select>
+                    </>
+            }
         </form>
     </>
 }
