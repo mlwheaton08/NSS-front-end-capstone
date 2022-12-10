@@ -36,7 +36,7 @@ export const CommentForm = ({ userId, articleId, fetchComments }) => {
         <form className="commentForm">
             <fieldset>
                 <input
-                    required autoFocus
+                    required
                     type="text"
                     placeholder="Comment here..."
                     value={comment.text}

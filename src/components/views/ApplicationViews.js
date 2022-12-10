@@ -1,6 +1,6 @@
 import { Outlet, Route, Routes } from "react-router-dom";
 import { Article } from "../articles/Article";
-import { Browse } from "../browse/Browse";
+import { ArticleContainer } from "../browse/ArticleContainer";
 import { Favorites } from "../favorites/Favorites";
 import { Home } from "../home/Home";
 
@@ -17,10 +17,10 @@ export const ApplicationViews = () => {
                 </>
             }>
             
-            <Route path="/" element={ <Home/> } />
-            <Route path="browse/:pageNumber" element={ <Browse/> } />
-            <Route path="favorites" element={ <Favorites/> } />
-            <Route path="article/:articleTitle" element={ <Article/> } />
+            <Route path="/" element={ <Home /> } />
+            <Route path="browse/:pageNumber" element={ <ArticleContainer /> } />
+            <Route path="favorites" element={ <Favorites /> } />
+            <Route path="article/:articleTitle" element={ <Article /> } />
 				
             </Route>
         </Routes>
