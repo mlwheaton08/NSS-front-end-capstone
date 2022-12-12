@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import { ArticleCard } from "../articles/ArticleCard"
+import "./Home.css"
 
 export const Home = () => {
     const [randomCategory, setRandomCategory] = useState({})
@@ -56,22 +57,23 @@ export const Home = () => {
     )
 
 
-    return <>
-
+    return <div className="home">
         <ArticleCard
             category={randomCategory}
             subCategory={randomSubCategory}
             article={randomArticle}
         />
 
-        <button onClick={() => fetchRandomCategory()}>Next</button>
-        {
-            randomSubCategory.name === "No subcategory"
-            ? <button onClick={() =>fetchRandomSubCategory()}>Keep Category</button>
-            : <>
-                <button onClick={() => fetchRandomArticle()}>Keep SubCategory</button>
-                <button onClick={() => fetchRandomArticle()}>Keep Category</button>
-            </>
-        }
-    </>
+        <div className="btn-random-fetch">
+            {
+                randomSubCategory.name === "No subcategory"
+                ? <button onClick={() =>fetchRandomSubCategory()}>Keep Category</button>
+                : <>
+                    <button onClick={() => fetchRandomArticle()}>Keep Category</button>
+                    <button onClick={() => fetchRandomArticle()}>Keep SubCategory</button>
+                </>
+            }
+            <button onClick={() => fetchRandomCategory()}>Next</button>
+        </div>
+    </div>
 }

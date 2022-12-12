@@ -61,7 +61,7 @@ export const Article = () => {
     )
     
  
-    return <>
+    return <div className="article">
         <h1>{articleTitle}</h1>
         <aside className="commentsContainer">
             <h3>COMMENTS</h3>
@@ -83,5 +83,5 @@ export const Article = () => {
             </>
         </aside>
         <div className="Container" dangerouslySetInnerHTML={{__html: articleText}}></div>
-    </>
+    </div>
 }

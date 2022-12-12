@@ -3,6 +3,7 @@ import { Article } from "../articles/Article";
 import { ArticleContainer } from "../browse/ArticleContainer";
 import { Favorites } from "../favorites/Favorites";
 import { Home } from "../home/Home";
+import "./ApplicationViews.css"
 
 export const ApplicationViews = () => {
 
@@ -10,8 +11,10 @@ export const ApplicationViews = () => {
         <Routes>
             <Route path="/" element={
                 <>
-                    <h1>Aimless</h1>
-                    <div>Learn about random shit.</div>
+                    <div className="hero">
+                        <h1 id="title">Aimless</h1>
+                        <h3 id="subtitle">Learn about random shit.</h3>
+                    </div>
 
                     <Outlet />
                 </>
