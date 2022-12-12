@@ -7,13 +7,13 @@ export const NavBar = () => {
     return (
         <ul className="navbar">
             <li className="navbar__item active">
-                <Link className="navbar__link" to="/">Home</Link>
+                <Link className="navbar__link" to="/">HOME</Link>
             </li>
             <li className="navbar__item active">
-                <Link className="navbar__link" to="/browse/1">Browse</Link>
+                <Link className="navbar__link" to="/browse/1">BROWSE</Link>
             </li>
             <li className="navbar__item active">
-                <Link className="navbar__link" to="/favorites">Favorites</Link>
+                <Link className="navbar__link" to="/favorites">FAVORITES</Link>
             </li>
             {
                 localStorage.getItem("capstone_user")
@@ -21,7 +21,7 @@ export const NavBar = () => {
                     <Link className="navbar__link" to="" onClick={() => {
                         localStorage.removeItem("capstone_user")
                         navigate("/", {replace: true})
-                    }}>Logout</Link>
+                    }}>LOGOUT</Link>
                 </li>
                 : ""
             }

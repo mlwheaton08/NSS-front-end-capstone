@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react"
+import "./ArticleSearch.css"
 
 export const ArticleSearch = ({ searchTermState, setSearchTerms }) => {
     const [categoryOptions, setCategoryOptions] = useState([])
@@ -49,50 +50,52 @@ export const ArticleSearch = ({ searchTermState, setSearchTerms }) => {
                     }
                 />
             </div>
-
-            <label htmlFor="categories">Category</label>
-            <select name="categories"
-                onChange={
-                    (evt) => {
-                        const copy = {...searchTermState}
-                        copy.categoryId = evt.target.value
-                        copy.subCategoryId = ""
-                        setSearchTerms(copy)
-                        setSelectedCategoryId(evt.target.value)
+            
+            <section id="filter">
+                <label htmlFor="categories">Category</label>
+                <select name="categories"
+                    onChange={
+                        (evt) => {
+                            const copy = {...searchTermState}
+                            copy.categoryId = evt.target.value
+                            copy.subCategoryId = ""
+                            setSearchTerms(copy)
+                            setSelectedCategoryId(evt.target.value)
+                        }
                     }
-                }
-            >
-                <option value=""></option>
-                {
-                    categoryOptions.map((category) => {
-                        return <option value={category.id} key={`category--${category.id}`}>{category.name}</option>
-                    })
-                }
-            </select>
+                >
+                    <option value=""></option>
+                    {
+                        categoryOptions.map((category) => {
+                            return <option value={category.id} key={`category--${category.id}`}>{category.name}</option>
+                        })
+                    }
+                </select>
 
-            {
-                subCategoryOptions.length <= 1
-                    ? ""
-                    : <>
-                        <label htmlFor="subCategories">Subcategory</label>
-                        <select name="subCategories"
-                            onChange={
-                                (evt) => {
-                                    const copy = {...searchTermState}
-                                    copy.subCategoryId = evt.target.value
-                                    setSearchTerms(copy)
+                {
+                    subCategoryOptions.length <= 1
+                        ? ""
+                        : <>
+                            <label htmlFor="subCategories">Subcategory</label>
+                            <select name="subCategories"
+                                onChange={
+                                    (evt) => {
+                                        const copy = {...searchTermState}
+                                        copy.subCategoryId = evt.target.value
+                                        setSearchTerms(copy)
+                                    }
                                 }
-                            }
-                        >
-                            <option value=""></option>
-                            {
-                                subCategoryOptions.map((subCategory) => {
-                                    return <option value={subCategory.id} key={`subCategory--${subCategory.id}`}>{subCategory.name}</option>
-                                })
-                            }
-                        </select>
-                    </>
-            }
+                            >
+                                <option value=""></option>
+                                {
+                                    subCategoryOptions.map((subCategory) => {
+                                        return <option value={subCategory.id} key={`subCategory--${subCategory.id}`}>{subCategory.name}</option>
+                                    })
+                                }
+                            </select>
+                        </>
+                }
+            </section>
         </form>
     </>
 }

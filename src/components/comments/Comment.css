@@ -1,0 +1,12 @@
+.comment {
+    border: 1px dotted gray;
+    margin: 10px;
+    padding: 5px;
+    color: rgb(182, 3, 3);
+}
+
+.commentHeader {
+    display: flex;
+    justify-content: space-between;
+    color: rgb(214, 131, 53);
+}

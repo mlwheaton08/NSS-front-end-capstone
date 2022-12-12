@@ -24,7 +24,6 @@ export const Browse = ({ searchTermState }) => {
 
     const fetchArticles = async () => {
         const API = getAPI()
-        console.log(API)
         const response = await fetch(API)
         const responseJSON = await response.json()
         setArticles(responseJSON)

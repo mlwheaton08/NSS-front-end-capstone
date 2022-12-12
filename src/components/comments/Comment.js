@@ -1,4 +1,5 @@
 import { CommentEdit } from "./CommentEdit"
+import "./Comment.css"
 
 export const Comment = ({ comment, fetchComments }) => {
 
@@ -11,11 +12,14 @@ export const Comment = ({ comment, fetchComments }) => {
 
 
     return <>
-        <header id={comment.id}>{comment.text}</header>
-        
-        <CommentEdit comment={currentComment} fetchComments={fetchAllComments} />
+        <div className="comment">
+            <header className="commentHeader">
+                <span>{comment.user.fullName}</span>
+                <span>{formatDate(new Date(comment.timePosted))}</span>
+            </header>
 
-        <p>{formatDate(new Date(comment.timePosted))}</p>
-        <p>- {comment.user.fullName}</p>
+            <p id={comment.id}>{ comment.text}</p>
+            <CommentEdit comment={currentComment} fetchComments={fetchAllComments} />
+        </div>
     </>
 }
