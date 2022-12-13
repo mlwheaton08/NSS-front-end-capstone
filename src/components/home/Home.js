@@ -69,7 +69,7 @@ export const Home = () => {
                 randomSubCategory.name === "No subcategory"
                 ? <button onClick={() =>fetchRandomSubCategory()}>Keep Category</button>
                 : <>
-                    <button onClick={() => fetchRandomArticle()}>Keep Category</button>
+                    <button onClick={() => fetchRandomSubCategory()}>Keep Category</button>
                     <button onClick={() => fetchRandomArticle()}>Keep SubCategory</button>
                 </>
             }
