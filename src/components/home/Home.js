@@ -58,6 +58,8 @@ export const Home = () => {
 
 
     return <div className="home">
+        <h3>Learn about random stuff</h3>
+
         <ArticleCard
             category={randomCategory}
             subCategory={randomSubCategory}
