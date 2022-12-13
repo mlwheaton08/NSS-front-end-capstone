@@ -1,7 +1,7 @@
 .articleCard {
     border: 1px solid gray;
     height: 300px;
-    width: 400px;
+    width: 100vw;
 }
 
 .articleTitle {

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { ArticleCard } from "../articles/ArticleCard";
 import { ProfileNav } from "../nav/ProfileNav";
+import "./Favorites.css"
 
 export const Favorites = () => {
     const localProjectUser = localStorage.getItem("capstone_user");
@@ -21,7 +22,7 @@ export const Favorites = () => {
         []
     )
 
-    return <>
+    return <main>
         <h1>Favorites</h1>
 
         {
@@ -37,5 +38,5 @@ export const Favorites = () => {
         }
 
         <ProfileNav />
-    </>
+    </main>
 }

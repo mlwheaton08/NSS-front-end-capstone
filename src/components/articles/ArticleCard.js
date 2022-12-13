@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import "./ArticleCard.css"
 
 export const ArticleCard = ({ category, subCategory, article, fetchFavorites, fetchReadLater }) => {
     const localProjectUser = localStorage.getItem("capstone_user");
     const projectUserObject = JSON.parse(localProjectUser);
+
+    const navigate = useNavigate()
 
     const [isFavorite, setIsFavorite] = useState(true)
     const [isReadLater, setIsReadLater] = useState(true)
@@ -123,9 +125,20 @@ export const ArticleCard = ({ category, subCategory, article, fetchFavorites, fe
     return <>
             <div className="articleCard">
                 <div className="articleHeader">
-                    <span className="articleCategory">{category.name}
+                    <span className="articleCategory">
+                        <Link to={`/browse/${category.id}/0/no_search/1`} onClick={() => {
+                            navigate(`/browse/${category.id}/0/no_search/1`)
+                            window.location.reload(false)
+                        }}>{category.name}</Link>
                         {
-                            subCategory.name !== "No subcategory" ? " - " + subCategory.name : ""
+                            subCategory.name !== "No subcategory"
+                                ? <span> - 
+                                    <Link to={`/browse/${category.id}/${subCategory.id}/no_search/1`} onClick={() => {
+                                        navigate(`/browse/${category.id}/${subCategory.id}/no_search/1`)
+                                        window.location.reload(false)
+                                    }}>{subCategory.name}</Link>
+                                </span>
+                                : ""
                         }
                     </span>
                     {

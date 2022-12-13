@@ -3,7 +3,6 @@ import "./ArticleSearch.css"
 
 export const ArticleSearch = ({ searchTermState, setSearchTerms }) => {
     const [categoryOptions, setCategoryOptions] = useState([])
-    const [selectedCategoryId, setSelectedCategoryId] = useState("")
     const [subCategoryOptions, setSubCategoryOptions] = useState([])
 
     useEffect(
@@ -21,24 +20,34 @@ export const ArticleSearch = ({ searchTermState, setSearchTerms }) => {
     useEffect(
         () => {
             const fetchSubCategories = async () => {
-                const response = await fetch(`http://localhost:8088/subCategories?categoryId=${selectedCategoryId}`)
-                const responseJSON = await response.json()
-                if (responseJSON.length <= 1) {
-                    setSubCategoryOptions([])
-                } else {
-                    setSubCategoryOptions(responseJSON)
+                if (searchTermState.categoryId !== 0) {
+                    const response = await fetch(`http://localhost:8088/subCategories?categoryId=${searchTermState.categoryId}`)
+                    const responseJSON = await response.json()
+                    if (responseJSON.length <= 1) {
+                        setSubCategoryOptions([])
+                    } else {
+                        setSubCategoryOptions(responseJSON)
+                    }
                 }
             }
             fetchSubCategories()
         },
-        [selectedCategoryId]
+        [searchTermState.categoryId]
     )
+
+    const getSearch = () => {
+        if (searchTermState.search === "no_search") {
+            return ""
+        } else {
+            return searchTermState.search
+        }
+    }
 
 
     return <>
         <form>
             <div>
-                <input
+                <input value={getSearch()}
                     type="text"
                     placeholder="Search..."
                     onChange={
@@ -53,14 +62,13 @@ export const ArticleSearch = ({ searchTermState, setSearchTerms }) => {
             
             <section id="filter">
                 <label htmlFor="categories">Category</label>
-                <select name="categories"
+                <select name="categories" value={searchTermState.categoryId}
                     onChange={
                         (evt) => {
                             const copy = {...searchTermState}
                             copy.categoryId = evt.target.value
                             copy.subCategoryId = ""
                             setSearchTerms(copy)
-                            setSelectedCategoryId(evt.target.value)
                         }
                     }
                 >
@@ -77,7 +85,7 @@ export const ArticleSearch = ({ searchTermState, setSearchTerms }) => {
                         ? ""
                         : <>
                             <label htmlFor="subCategories">Subcategory</label>
-                            <select name="subCategories"
+                            <select name="subCategories" value={searchTermState.subCategoryId}
                                 onChange={
                                     (evt) => {
                                         const copy = {...searchTermState}
