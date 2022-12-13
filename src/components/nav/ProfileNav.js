@@ -14,7 +14,7 @@ export const ProfileNav = () => {
                 <Link className="profilenav__link" to="/favorites">Favorites</Link>
             </li>
             <li className="profilenav__item active">
-                <Link className="profilenav__link" to="/saved_for_later">Read Later</Link>
+                <Link className="profilenav__link" to="/read_later">Read Later</Link>
             </li>
             <li className="profilenav__item active">
                 <Link className="profilenav__link" to="/preferences">Preferences</Link>

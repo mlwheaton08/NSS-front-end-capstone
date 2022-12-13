@@ -4,6 +4,7 @@ import { ArticleContainer } from "../browse/ArticleContainer";
 import { Favorites } from "../favorites/Favorites";
 import { Home } from "../home/Home";
 import { Profile } from "../profile/Profile";
+import { ReadLater } from "../read-later/ReadLater";
 import "./ApplicationViews.css"
 
 export const ApplicationViews = () => {
@@ -24,6 +25,7 @@ export const ApplicationViews = () => {
             <Route path="browse/:pageNumber" element={ <ArticleContainer /> } />
             <Route path="article/:articleTitle" element={ <Article /> } />
             <Route path="favorites" element={ <Favorites /> } />
+            <Route path="read_later" element={ <ReadLater /> } />
             <Route path="profile" element={ <Profile /> } />
 				
             </Route>
