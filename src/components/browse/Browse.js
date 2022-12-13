@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { Link, useNavigate, useParams } from "react-router-dom"
 import { ArticleCard } from "../articles/ArticleCard"
+import "./Browse.css"
 
 export const Browse = ({ searchTermState }) => {
     const {pageNumber} = useParams()
@@ -10,14 +11,14 @@ export const Browse = ({ searchTermState }) => {
 
     const getAPI = () => {
         let API = `http://localhost:8088/articles?_page=${page}&_limit=20&_expand=category&_expand=subCategory`
-        if (searchTermState.search) {
-            API += `&q=${searchTermState.search}`
-        }
-        if (searchTermState.categoryId) {
+        if (searchTermState.categoryId && parseInt(searchTermState.categoryId) !== 0) {
             API += `&categoryId=${searchTermState.categoryId}`
         }
-        if (searchTermState.subCategoryId) {
+        if (searchTermState.subCategoryId && parseInt(searchTermState.subCategoryId) !== 0) {
             API += `&subCategoryId=${searchTermState.subCategoryId}`
+        }
+        if (searchTermState.search && searchTermState.search !== "no_search") {
+            API += `&q=${searchTermState.search}`
         }
         return API
     }
@@ -27,6 +28,22 @@ export const Browse = ({ searchTermState }) => {
         const response = await fetch(API)
         const responseJSON = await response.json()
         setArticles(responseJSON)
+    }
+
+    const getSearchURL = () => {
+        let cat = searchTermState.categoryId
+        let subCat = searchTermState.subCategoryId
+        let search = searchTermState.search
+        if (!searchTermState.categoryId) {
+            cat = 0
+        }
+        if (!searchTermState.subCategoryId) {
+            subCat = 0
+        }
+        if (!searchTermState.search) {
+            search = "no_search"
+        }
+        return `${cat}/${subCat}/${search}`
     }
 
     useEffect(
@@ -44,24 +61,36 @@ export const Browse = ({ searchTermState }) => {
         [page]
     )
 
+    const enterSearch = () => {
+        navigate(`/browse/${getSearchURL()}/1`)
+        setPage(1)
+        fetchArticles()
+    }
+
 
     return <>
         <div>
-            <button onClick={() => {
-                navigate("/browse/1")
-                setPage(1)
-                fetchArticles()
-                }
-            }>Search</button>
+            <button onClick={() => enterSearch()}>Search</button>
         </div>
         
         <h1>Browse</h1>
-        {
-            page === 1
-            ? ""
-            : <Link to={`/browse/${page - 1}`} onClick={() => setPage(page - 1)}>Page {page - 1}</Link>
-        }
-        <Link to={`/browse/${page + 1}`} onClick={() => setPage(page + 1)}>Page {page + 1}</Link>
+        <div className="btn btn-pages">
+            <span className="btn btn-previous-page">
+                {
+                    page === 1
+                    ? <span>--</span>
+                    : <Link to={`/browse/${getSearchURL()}/${page - 1}`} onClick={() => setPage(page - 1)}>⬅️</Link>
+                }
+            </span>
+            <span id="page-number">Page {page}</span>
+            <span className="btn btn-next-page">
+                {
+                    articles.length < 20
+                    ? <span>--</span>
+                    : <Link to={`/browse/${getSearchURL()}/${page + 1}`} onClick={() => setPage(page + 1)}>➡️</Link>
+                }
+            </span>
+        </div>
 
         {
             articles.map(article => {
@@ -72,6 +101,36 @@ export const Browse = ({ searchTermState }) => {
                     article={article}
                 />
             })
+        }
+
+        {
+            articles.length < 2
+            ? ""
+            : <div className="btn btn-pages">
+                <span className="btn btn-previous-page">
+                    {
+                        page === 1
+                        ? <span>--</span>
+                        : <Link to={`/browse/${getSearchURL()}/${page - 1}`}
+                            onClick={() => {
+                                window.scrollTo(0, 0)
+                                setPage(page - 1)
+                            }}>⬅️</Link>
+                    }
+                </span>
+                <span id="page-number">Page {page}</span>
+                <span className="btn btn-next-page">
+                    {
+                        articles.length < 20
+                        ? <span>--</span>
+                        : <Link to={`/browse/${getSearchURL()}/${page + 1}`}
+                            onClick={() => {
+                                window.scrollTo(0, 0)
+                                setPage(page + 1)
+                            }}>➡️</Link>
+                    }
+                </span>
+            </div>
         }
 
     </>

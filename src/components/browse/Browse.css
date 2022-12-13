@@ -1,0 +1,8 @@
+.btn-pages {
+    display: flex;
+    justify-content: space-between;
+}
+
+.btn-next-page {
+    text-align: right;
+}

@@ -22,7 +22,7 @@ export const ApplicationViews = () => {
             }>
             
             <Route path="/" element={ <Home /> } />
-            <Route path="browse/:pageNumber" element={ <ArticleContainer /> } />
+            <Route path="browse/:categoryId/:subCategoryId/:search/:pageNumber" element={ <ArticleContainer /> } />
             <Route path="article/:articleTitle" element={ <Article /> } />
             <Route path="favorites" element={ <Favorites /> } />
             <Route path="read_later" element={ <ReadLater /> } />
