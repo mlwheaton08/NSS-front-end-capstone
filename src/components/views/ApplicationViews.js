@@ -3,6 +3,7 @@ import { Article } from "../articles/Article";
 import { ArticleContainer } from "../browse/ArticleContainer";
 import { Favorites } from "../favorites/Favorites";
 import { Home } from "../home/Home";
+import { Profile } from "../profile/Profile";
 import "./ApplicationViews.css"
 
 export const ApplicationViews = () => {
@@ -13,7 +14,6 @@ export const ApplicationViews = () => {
                 <>
                     <div className="hero">
                         <h1 id="title">Aimless</h1>
-                        <h3 id="subtitle">Learn about random shit.</h3>
                     </div>
 
                     <Outlet />
@@ -22,8 +22,9 @@ export const ApplicationViews = () => {
             
             <Route path="/" element={ <Home /> } />
             <Route path="browse/:pageNumber" element={ <ArticleContainer /> } />
-            <Route path="favorites" element={ <Favorites /> } />
             <Route path="article/:articleTitle" element={ <Article /> } />
+            <Route path="favorites" element={ <Favorites /> } />
+            <Route path="profile" element={ <Profile /> } />
 				
             </Route>
         </Routes>

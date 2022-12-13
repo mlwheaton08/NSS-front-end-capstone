@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import { ArticleCard } from "../articles/ArticleCard";
+import { ProfileNav } from "../nav/ProfileNav";
 
 export const Favorites = () => {
     const localProjectUser = localStorage.getItem("capstone_user");
@@ -21,7 +22,7 @@ export const Favorites = () => {
     )
 
     return <>
-        <h1>Favorites Page</h1>
+        <h1>Favorites</h1>
 
         {
             favoriteArticles.map(favorite => {
@@ -34,5 +35,7 @@ export const Favorites = () => {
                 />
             })
         }
+
+        <ProfileNav />
     </>
 }
