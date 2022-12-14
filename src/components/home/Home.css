@@ -1,7 +1,4 @@
 .home {
-    display: flex;
-    height: 65vh;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    position: fixed;
+    top: 25vh;
 }
