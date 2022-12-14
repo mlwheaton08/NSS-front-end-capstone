@@ -3,9 +3,9 @@ import { ArticleCard } from "../articles/ArticleCard"
 import "./Home.css"
 
 export const Home = () => {
-    const [randomCategory, setRandomCategory] = useState({})
-    const [randomSubCategory, setRandomSubCategory] = useState({})
-    const [randomArticle, setRandomArticle] = useState({})
+    const [randomCategory, setRandomCategory] = useState("")
+    const [randomSubCategory, setRandomSubCategory] = useState("")
+    const [randomArticle, setRandomArticle] = useState("")
 
     const fetchRandomCategory = async () => {
         const catResponse = await fetch('http://localhost:8088/categories')
@@ -22,11 +22,13 @@ export const Home = () => {
     )
 
     const fetchRandomSubCategory = async () => {
-        const subCatResponse = await fetch(`http://localhost:8088/categories/${randomCategory.id}?_embed=subCategories`)
-        const subCatResponseJSON = await subCatResponse.json()
-        const subCategories = await subCatResponseJSON.subCategories
-        const randomIndex = Math.floor(Math.random() * subCategories.length)
-        setRandomSubCategory(subCategories[randomIndex])
+        if (randomCategory) {
+            const subCatResponse = await fetch(`http://localhost:8088/categories/${randomCategory.id}?_embed=subCategories`)
+            const subCatResponseJSON = await subCatResponse.json()
+            const subCategories = await subCatResponseJSON.subCategories
+            const randomIndex = Math.floor(Math.random() * subCategories.length)
+            setRandomSubCategory(subCategories[randomIndex])
+        }
     }
 
     useEffect(
@@ -37,16 +39,18 @@ export const Home = () => {
     )
 
     const fetchRandomArticle = async () => {
-        let url = `http://localhost:8088/subCategories/${randomSubCategory.id}?_embed=articles`
-        if (randomSubCategory.name === "No subcategory") {
-            url =  `http://localhost:8088/categories/${randomCategory.id}?_embed=articles`
+        if (randomSubCategory) {
+            let url = `http://localhost:8088/subCategories/${randomSubCategory.id}?_embed=articles`
+            if (randomSubCategory.name === "No subcategory") {
+                url =  `http://localhost:8088/categories/${randomCategory.id}?_embed=articles`
+            }
+    
+            const articleResponse = await fetch(url)
+            const articleResponseJSON = await articleResponse.json()
+            const articles = await articleResponseJSON.articles
+            const randomIndex = Math.floor(Math.random() * articles.length)
+            setRandomArticle(articles[randomIndex])
         }
-
-        const articleResponse = await fetch(url)
-        const articleResponseJSON = await articleResponse.json()
-        const articles = await articleResponseJSON.articles
-        const randomIndex = Math.floor(Math.random() * articles.length)
-        setRandomArticle(articles[randomIndex])
     }
 
     useEffect(
@@ -58,7 +62,6 @@ export const Home = () => {
 
 
     return <div className="home">
-        <h3>Learn about random stuff</h3>
 
         <ArticleCard
             category={randomCategory}
