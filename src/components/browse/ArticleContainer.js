@@ -2,6 +2,7 @@ import { useState } from "react"
 import { useParams } from "react-router-dom"
 import { ArticleSearch } from "./ArticleSearch"
 import { Browse } from "./Browse"
+import "./ArticleContainer.css"
 
 export const ArticleContainer = () => {
     const {categoryId} = useParams()
@@ -15,10 +16,11 @@ export const ArticleContainer = () => {
     })
 
 
-    return<>
+    return <div id="search-and-browse">
+        <h1>Browse</h1>
         <ArticleSearch
             searchTermState={searchTerms}
             setSearchTerms={setSearchTerms} />
         <Browse searchTermState={searchTerms} />
-    </>
+    </div>
 }

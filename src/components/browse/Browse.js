@@ -68,70 +68,93 @@ export const Browse = ({ searchTermState }) => {
     }
 
 
-    return <>
-        <div>
-            <button onClick={() => enterSearch()}>Search</button>
-        </div>
+    return <div id="browse">
+
+        <button id="search-button" onClick={() => enterSearch()}>
+            <span>Search</span>
+            <span>
+                <svg id="search-arrow-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                    <path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"/>
+                </svg>
+            </span>
+        </button>
         
-        <h1>Browse</h1>
-        <div className="btn btn-pages">
-            <span className="btn btn-previous-page">
+        <div className="page-turn-buttons">
+            <span>
                 {
                     page === 1
-                    ? <span>--</span>
-                    : <Link to={`/browse/${getSearchURL()}/${page - 1}`} onClick={() => setPage(page - 1)}>⬅️</Link>
+                    ? <svg className="page-turn left false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                        <path d="M502.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-128-128c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L402.7 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l370.7 0-73.4 73.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l128-128z"/>
+                    </svg>
+                    : <svg className="page-turn left true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" onClick={() => {
+                            setPage(page - 1)
+                            navigate(`/browse/${getSearchURL()}/${page - 1}`)
+                            }}>
+                        <path d="M502.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-128-128c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L402.7 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l370.7 0-73.4 73.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l128-128z"/>
+                    </svg>
                 }
             </span>
             <span id="page-number">Page {page}</span>
-            <span className="btn btn-next-page">
+            <span>
                 {
                     articles.length < 20
-                    ? <span>--</span>
-                    : <Link to={`/browse/${getSearchURL()}/${page + 1}`} onClick={() => setPage(page + 1)}>➡️</Link>
+                    ? <svg className="page-turn right false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                        <path d="M502.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-128-128c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L402.7 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l370.7 0-73.4 73.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l128-128z"/>
+                    </svg>
+                    : <svg className="page-turn right true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" onClick={() => {
+                            setPage(page + 1)
+                            navigate(`/browse/${getSearchURL()}/${page + 1}`)
+                            }}>
+                        <path d="M502.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-128-128c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L402.7 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l370.7 0-73.4 73.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l128-128z"/>
+                    </svg>
                 }
             </span>
         </div>
 
-        {
-            articles.map(article => {
-                return <ArticleCard
-                    key={`article--${article.id}`}
-                    category={article.category}
-                    subCategory={article.subCategory}
-                    article={article}
-                />
-            })
-        }
+        <div className="article-cards">
+            {
+                articles.map(article => {
+                    return <ArticleCard
+                        key={`article--${article.id}`}
+                        category={article.category}
+                        subCategory={article.subCategory}
+                        article={article}
+                    />
+                })
+            }
+        </div>
 
-        {
-            articles.length < 2
-            ? ""
-            : <div className="btn btn-pages">
-                <span className="btn btn-previous-page">
-                    {
-                        page === 1
-                        ? <span>--</span>
-                        : <Link to={`/browse/${getSearchURL()}/${page - 1}`}
-                            onClick={() => {
-                                window.scrollTo(0, 0)
-                                setPage(page - 1)
-                            }}>⬅️</Link>
-                    }
-                </span>
-                <span id="page-number">Page {page}</span>
-                <span className="btn btn-next-page">
-                    {
-                        articles.length < 20
-                        ? <span>--</span>
-                        : <Link to={`/browse/${getSearchURL()}/${page + 1}`}
-                            onClick={() => {
-                                window.scrollTo(0, 0)
-                                setPage(page + 1)
-                            }}>➡️</Link>
-                    }
-                </span>
-            </div>
-        }
+        <div className="page-turn-buttons bottom">
+            <span>
+                {
+                    page === 1
+                    ? <svg className="page-turn left false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                        <path d="M502.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-128-128c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L402.7 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l370.7 0-73.4 73.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l128-128z"/>
+                    </svg>
+                    : <svg className="page-turn left true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" onClick={() => {
+                            setPage(page - 1)
+                            navigate(`/browse/${getSearchURL()}/${page - 1}`)
+                            }}>
+                        <path d="M502.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-128-128c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L402.7 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l370.7 0-73.4 73.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l128-128z"/>
+                    </svg>
+                }
+            </span>
+            <span id="page-number">Page {page}</span>
+            <span>
+                {
+                    articles.length < 20
+                    ? <svg className="page-turn right false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                        <path d="M502.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-128-128c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L402.7 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l370.7 0-73.4 73.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l128-128z"/>
+                    </svg>
+                    : <svg className="page-turn right true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" onClick={() => {
+                            setPage(page + 1)
+                            navigate(`/browse/${getSearchURL()}/${page + 1}`)
+                            }}>
+                        <path d="M502.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-128-128c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L402.7 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l370.7 0-73.4 73.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l128-128z"/>
+                    </svg>
+                }
+            </span>
+        </div>
 
-    </>
+    </div>
 }
