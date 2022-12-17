@@ -1,0 +1,33 @@
+.comment-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    justify-items: center;
+    align-content: center;
+    width: fit-content;
+    margin: 0 auto 15px;
+    padding: 3px 15px;
+    border-radius: 5px;
+    background-color: rgb(68, 68, 68);
+    color: white;
+}
+
+.comment-form.input {
+    height: 100%;
+    margin: 0;
+}
+
+.icon.submit {
+    height: 25px;
+    margin: 0;
+    padding: 0;
+    fill: rgb(114, 114, 114);
+}
+
+.icon.submit.ready {
+    fill: rgb(255, 102, 191);
+}
+
+.icon.submit.ready:active {
+    fill: rgb(255, 73, 179);
+}

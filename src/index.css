@@ -6,3 +6,37 @@ body {
     color: rgb(235, 235, 235);
     font-family: 'Rubik', sans-serif;
 }
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 400;
+}
+
+input {
+    all: unset;
+    background-color: rgba(232, 255, 246, 0.13);
+    color: white;
+    font-weight: 300;
+}
+
+select {
+    all: unset;
+    font-family: 'Rubik', sans-serif;
+    width: fit-content;
+    padding: 3px 15px;
+    background-color: rgb(53, 53, 53);
+    color: rgb(235, 235, 235);
+    font-weight: 300;
+    font-size: 0.95rem;
+    border: none;
+    border-radius: 5px;;
+}
+
+button {
+    all: unset;
+    width: fit-content;
+    background-color: rgb(53, 53, 53);
+    color: white;
+    font-weight: 300;
+    padding: 3px 15px;
+    border-radius: 5px;
+}

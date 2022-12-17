@@ -1,0 +1,10 @@
+.comment-edit-btn-container {
+    display: flex;
+    justify-content: end;
+}
+
+.btn-edit {
+    font-size: 0.8rem;
+    background-color: rgba(255, 255, 255, 0);
+    color: rgb(253, 157, 213);
+}

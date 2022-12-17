@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react"
+import "./CommentEdit.css"
 
 export const CommentEdit = ({ comment, fetchComments }) => {
 
@@ -54,36 +55,35 @@ export const CommentEdit = ({ comment, fetchComments }) => {
         comment.userId !== projectUserObject.id
             ? ""
             : !editing
-                ? <>
-                    <button onClick={() => setEditing(true)}>Edit</button>
-                    <button onClick={() => deleteComment()}>Delete</button>
-                </>
+                ? <section className="comment-edit-btn-container">
+                    <button className="btn-edit edit-comment" onClick={() => setEditing(true)}>Edit</button>
+                    <button className="btn-edit delete" onClick={() => deleteComment()}>Delete</button>
+                </section>
                 : <form className="commentForm editComment">
-                    <fieldset>
-                        <input
-                            required autoFocus
-                            type="text"
-                            value={commentNew.text}
-                            onChange={
-                                (evt) => {
-                                    const copy = {...commentNew}
-                                    copy.text = evt.target.value
-                                    updateCommentNew(copy)
-                                }
-                            } />
-                    </fieldset>
-    
-                    <button
-                        className="btn commentEdit"
-                        onClick={(clickEvent) => saveCommentChanges(clickEvent)}>
-                        Save Changes
-                    </button>
-                    <button
-                        className="btn commentDiscardChanges"
-                        onClick={() => fetchComments()}>
-                        Discard Changes
-                    </button>
-                    <button onClick={() => deleteComment()}>DeleteComment</button>
+                    <input
+                        required autoFocus
+                        type="text"
+                        value={commentNew.text}
+                        onChange={
+                            (evt) => {
+                                const copy = {...commentNew}
+                                copy.text = evt.target.value
+                                updateCommentNew(copy)
+                            }
+                        } />
+                    <section className="comment-edit-btn-container">
+                        <button
+                            className="btn-edit save-changes"
+                            onClick={(clickEvent) => saveCommentChanges(clickEvent)}>
+                            Save Changes
+                        </button>
+                        <button
+                            className="btn-edit discard-changes"
+                            onClick={() => fetchComments()}>
+                            Discard Changes
+                        </button>
+                        <button className="btn-edit delete" onClick={() => deleteComment()}>Delete Comment</button>
+                    </section>
                 </form>
     )
 }

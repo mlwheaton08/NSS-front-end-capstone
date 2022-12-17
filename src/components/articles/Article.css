@@ -1,7 +1,38 @@
 .article {
-    margin: 0 0 80px 0;
+    margin: 110px 0 80px 0;
 }
 
-.commentsContainer {
-    border: 1px solid gray;
+.article.text.blur {
+    filter: blur(3px);
+}
+
+.comments-section {
+    z-index: 11;
+}
+
+.icon.comments {
+    position: fixed;
+    z-index: 11;
+    top: 95px;
+    right: 15px;
+}
+
+.comments-container {
+    position: fixed;
+    z-index: 11;
+    right: 3vw;
+    top: 135px;
+    height: 70vh;
+    width: 94vw;
+    overflow: scroll;
+    border-radius: 5px;
+    background-color: rgb(214, 214, 214);
+}
+
+.comments-container.hidden {
+    display: none;
+}
+
+.comments-container.visible {
+    display: block;
 }

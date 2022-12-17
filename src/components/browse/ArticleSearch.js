@@ -62,9 +62,7 @@ export const ArticleSearch = ({ searchTermState, setSearchTerms }) => {
             />
         </section>
         
-        {/* <label htmlFor="categories">Category</label> */}
         <select id="filter-category" name="categories" value={searchTermState.categoryId}
-            placeholder="Category"
             onChange={
                 (evt) => {
                     const copy = {...searchTermState}
@@ -86,7 +84,6 @@ export const ArticleSearch = ({ searchTermState, setSearchTerms }) => {
             subCategoryOptions.length <= 1
                 ? ""
                 : <>
-                    {/* <label htmlFor="subCategories">Subcategory</label> */}
                     <select id="filter-subcategory" name="subCategories" value={searchTermState.subCategoryId}
                         onChange={
                             (evt) => {
