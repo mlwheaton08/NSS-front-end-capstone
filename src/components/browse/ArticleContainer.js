@@ -17,7 +17,6 @@ export const ArticleContainer = () => {
 
 
     return <div id="search-and-browse">
-        <h1>Browse</h1>
         <ArticleSearch
             searchTermState={searchTerms}
             setSearchTerms={setSearchTerms} />

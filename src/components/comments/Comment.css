@@ -1,12 +1,32 @@
-.comment {
-    border: 1px dotted gray;
-    margin: 10px;
-    padding: 5px;
-    color: rgb(182, 3, 3);
+.comment-container {
+    margin: 10px 5px;
+    padding: 10px;
+    overflow-wrap: break-word;
+    border-radius: 5px;
+    background-color: rgb(39, 39, 39);
+    color: rgb(235, 235, 235);
 }
 
-.commentHeader {
+.comment.header {
     display: flex;
     justify-content: space-between;
-    color: rgb(214, 131, 53);
+    color: rgb(235, 235, 235);
+}
+
+.comment.user {
+    font-size: 1.2rem;
+}
+
+.comment.user.self {
+    color: rgb(253, 157, 213);
+}
+
+.comment.date {
+    font-weight: 300;
+    font-size: 0.8rem;
+    color: rgb(187, 187, 187);
+}
+
+.comment.text {
+    font-weight: 300;
 }

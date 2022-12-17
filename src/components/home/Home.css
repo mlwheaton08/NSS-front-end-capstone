@@ -1,4 +1,42 @@
 .home {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    height: 100vh;
+}
+
+.btn-random-fetch-container {
     position: fixed;
-    top: 25vh;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    bottom: 150px;
+}
+
+.btn-category-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 5px;
+}
+
+.btn-random-fetch {
+    font-size: 0.85rem;
+}
+
+.btn-random-fetch:active {
+    box-shadow: inset 0 0 3px white;
+}
+
+#next-button {
+    margin-bottom: 5px;
+    font-size: 2rem;
+}
+
+#next-arrow-icon {
+    margin-left: 10px;
+    height: 25px;
+    fill: rgb(252, 82, 181);
 }

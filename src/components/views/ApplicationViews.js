@@ -15,7 +15,6 @@ export const ApplicationViews = () => {
                 <>
                     <div className="hero">
                         <h1 id="title">Aimless</h1>
-                        <h3 id="subtitle">Learn randomly</h3>
                     </div>
 
                     <Outlet />
