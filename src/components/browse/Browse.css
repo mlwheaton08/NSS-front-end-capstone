@@ -9,17 +9,17 @@
     border: none;
     border-radius: 5px;
     font-size: 1rem;
-    color: rgb(235, 235, 235);
-    background-color: rgb(59, 56, 58);
+    color: var(--main-text-color);
+    background-color: var(--secondary-bg-color);
 }
 
 #search-button:active {
-    box-shadow: inset 0 0 3px white;
+    box-shadow: inset 0 0 3px var(--main-text-color);
 }
 
 #search-arrow-icon {
     height: 20px;
-    fill: rgb(252, 82, 181);
+    fill: var(--tertiary-icon-color);
 }
 
 .article-cards {
@@ -41,17 +41,17 @@
 }
 
 #page-number {
-    color: rgba(255, 255, 255, 0.836);
+    color: var(--main-text-color);
 }
 
 .page-turn {
     height: 25px;
     width: 25px;
-    fill: rgba(255, 255, 255, 0.836);
+    fill: var(--primary-icon-color);
 }
 
 .page-turn.false {
-    fill: rgba(255, 255, 255, 0.171);
+    fill: var(--senary-icon-color);
 }
 
 .page-turn.left {

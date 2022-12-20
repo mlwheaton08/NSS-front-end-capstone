@@ -63,11 +63,13 @@ export const Home = () => {
 
     return <div className="home">
 
-        <ArticleCard
-            category={randomCategory}
-            subCategory={randomSubCategory}
-            article={randomArticle}
-        />
+        <div id="random-card">
+            <ArticleCard
+                category={randomCategory}
+                subCategory={randomSubCategory}
+                article={randomArticle}
+            />
+        </div>
 
         <div className="btn-random-fetch-container">
             <div className="btn-category-container">

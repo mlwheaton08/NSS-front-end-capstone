@@ -15,10 +15,8 @@ export const Aimless = () => {
         path="*"
         element={
           <Authorized>
-            <>
-              <NavBar />
-              <ApplicationViews />
-            </>
+            <NavBar />
+            <ApplicationViews />
           </Authorized>
         }
       />

@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react"
 import { ArticleCard } from "../articles/ArticleCard";
-import { ProfileNav } from "../nav/ProfileNav";
 import "./Favorites.css"
 
 export const Favorites = () => {
@@ -23,7 +22,7 @@ export const Favorites = () => {
     )
 
     return <main>
-        <h1>Favorites</h1>
+        <h2>Favorites</h2>
 
         {
             favoriteArticles.map(favorite => {
@@ -36,7 +35,5 @@ export const Favorites = () => {
                 />
             })
         }
-
-        <ProfileNav />
     </main>
 }

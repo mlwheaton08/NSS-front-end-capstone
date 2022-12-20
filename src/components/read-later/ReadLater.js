@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { ArticleCard } from "../articles/ArticleCard";
-import { ProfileNav } from "../nav/ProfileNav";
+import "./ReadLater.css"
 
 export const ReadLater = () => {
     const localProjectUser = localStorage.getItem("capstone_user");
@@ -21,8 +21,8 @@ export const ReadLater = () => {
         []
     )
 
-    return <>
-        <h1>Here's what you've saved for later</h1>
+    return <main>
+        <h2>Here's what you've saved for later</h2>
 
         {
             readLaterArticles.map(article => {
@@ -35,7 +35,5 @@ export const ReadLater = () => {
                 />
             })
         }
-
-        <ProfileNav />
-    </>
+    </main>
 }

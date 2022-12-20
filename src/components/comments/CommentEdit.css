@@ -5,6 +5,6 @@
 
 .btn-edit {
     font-size: 0.8rem;
-    background-color: rgba(255, 255, 255, 0);
-    color: rgb(253, 157, 213);
+    background-color: rgba(0, 0, 0, 0);
+    color: var(--tertiary-text-color);
 }

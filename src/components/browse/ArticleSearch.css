@@ -16,20 +16,20 @@
     padding: 3px 15px;
     width: 60vw;
     height: 30px;
-    background-color: rgba(232, 255, 246, 0.13);
+    background-color: var(--secondary-bg-color);
     border-radius: 5px;
 }
 
 #search-icon {
     width: 10%;
-    fill: rgb(20, 20, 20);
+    fill: var(--main-bg-color);
 }
 
 #search-input {
     display: block;
     width: 90%;
     height: 100%;
-    background-color: rgba(232, 255, 246, 0);
+    background-color: rgba(0, 0, 0, 0);
 }
 
 /* #filter-category {

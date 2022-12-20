@@ -1,10 +1,9 @@
-import { ProfileNav } from "../nav/ProfileNav"
+import "./Profile.css"
 
 export const Profile = () => {
 
-    return <>
+    return <main>
         <h1>My Profile</h1>
 
-        <ProfileNav />
-    </>
+    </main>
 }

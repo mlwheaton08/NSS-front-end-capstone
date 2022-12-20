@@ -93,7 +93,7 @@ export const ArticleSearch = ({ searchTermState, setSearchTerms }) => {
                             }
                         }
                     >
-                        <option value="" selected disabled>Select a Subcategory</option>
+                        <option value="">All Subcategories</option>
                         {
                             subCategoryOptions.map((subCategory) => {
                                 return <option value={subCategory.id} key={`subCategory--${subCategory.id}`}>{subCategory.name}</option>
