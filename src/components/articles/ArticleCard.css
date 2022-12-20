@@ -1,6 +1,7 @@
 .article-card {
     width: 95vw;
-    background-color: rgba(232, 255, 246, 0.116);
+    padding: 2px 2px 15px;
+    background-color: var(--secondary-bg-color);
     border-radius: 2%;
 }
 
@@ -27,17 +28,17 @@
 }
 
 .article-card-category {
-    background-color: rgba(0, 68, 255, 0.308);
+    background-color: var(--category-bg-color);
 }
 
 .article-card-subcategory {
-    background-color: rgba(0, 238, 255, 0.192);
+    background-color: var(--subcategory-bg-color);
 }
 
 .article-card-icon {
     width: 27px;
     height: 27px;
-    fill: rgb(235, 235, 235);
+    fill: var(--primary-icon-color);
 }
 
 .article-card-favorite {
@@ -48,10 +49,6 @@
 .article-card-unfavorite {
     margin-left: auto;
     margin-right: 12px;
-}
-
-.article-card-face {
-    margin: 40px 10px;
 }
 
 .article-card-title {
@@ -67,5 +64,5 @@
 
 a {
     text-decoration: none;
-    color: rgb(255, 255, 255);
+    color: var(--main-text-color);
 }

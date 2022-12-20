@@ -1,10 +1,52 @@
 @import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
 
 body {
+    --main-bg-color: rgb(20, 20, 20);
+    --secondary-bg-color: rgba(232, 255, 246, 0.116);
+    --tertiary-bg-color: rgb(39, 39, 39);
+    --quaternary-bg-color: rgb(68, 68, 68);
+    --quinary-bg-color: rgb(214, 214, 214);
+
+    --main-text-color: rgb(235, 235, 235);
+    --secondary-text-color: rgb(187, 187, 187);
+    --tertiary-text-color: rgb(253, 157, 213);
+
+    --category-bg-color: rgba(0, 68, 255, 0.308);
+    --subcategory-bg-color: rgba(0, 238, 255, 0.192);
+
+    --primary-icon-color: rgb(235, 235, 235);
+    --secondary-icon-color: rgb(173, 239, 241);
+    --tertiary-icon-color: rgb(252, 82, 181);
+    --quaternary-icon-color: rgb(253, 157, 213);
+    --quinary-icon-color: rgb(114, 114, 114);
+    --senary-icon-color: rgba(255, 255, 255, 0.171);
+
+    background-color: var(--main-bg-color);
+    color: var(--main-text-color);
     margin: 0 0 60px 0;
-    background-color: rgb(20, 20, 20);
-    color: rgb(235, 235, 235);
     font-family: 'Rubik', sans-serif;
+}
+
+body.light {
+    --main-bg-color: rgb(235, 235, 235);
+    --secondary-bg-color: rgba(201, 209, 206, 0.678);
+    --tertiary-bg-color: rgb(206, 206, 206);
+    --quaternary-bg-color: rgb(182, 182, 182);
+    --quinary-bg-color: rgb(66, 66, 66);
+
+    --main-text-color: rgb(20, 20, 20);
+    --secondary-text-color: rgb(88, 88, 88);
+    --tertiary-text-color: rgb(187, 68, 137);
+
+    --category-bg-color: rgba(0, 68, 255, 0.226);
+    --subcategory-bg-color: rgba(0, 238, 255, 0.205);
+
+    --primary-icon-color: rgb(20, 20, 20);
+    --secondary-icon-color: rgb(0, 107, 110);
+    --tertiary-icon-color: rgb(207, 0, 121);
+    --quaternary-icon-color: rgb(187, 68, 137);
+    --quinary-icon-color: rgb(155, 155, 155);
+    --senary-icon-color: rgba(0, 0, 0, 0.144);
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -23,19 +65,20 @@ select {
     font-family: 'Rubik', sans-serif;
     width: fit-content;
     padding: 3px 15px;
-    background-color: rgb(53, 53, 53);
-    color: rgb(235, 235, 235);
+    background-color: var(--quaternary-bg-color);
+    color: var(--main-text-color);
     font-weight: 300;
     font-size: 0.95rem;
     border: none;
-    border-radius: 5px;;
+    border-radius: 5px;
+    text-align: center;
 }
 
 button {
     all: unset;
     width: fit-content;
-    background-color: rgb(53, 53, 53);
-    color: white;
+    background-color: var(--quaternary-bg-color);
+    color: var(--main-text-color);
     font-weight: 300;
     padding: 3px 15px;
     border-radius: 5px;

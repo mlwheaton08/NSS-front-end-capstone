@@ -3,14 +3,14 @@
     padding: 10px;
     overflow-wrap: break-word;
     border-radius: 5px;
-    background-color: rgb(39, 39, 39);
-    color: rgb(235, 235, 235);
+    background-color: var(--tertiary-bg-color);
+    color: var(--main-text-color);
 }
 
 .comment.header {
     display: flex;
     justify-content: space-between;
-    color: rgb(235, 235, 235);
+    color: var(--main-text-color);
 }
 
 .comment.user {
@@ -18,13 +18,13 @@
 }
 
 .comment.user.self {
-    color: rgb(253, 157, 213);
+    color: var(--tertiary-text-color);
 }
 
 .comment.date {
     font-weight: 300;
     font-size: 0.8rem;
-    color: rgb(187, 187, 187);
+    color: var(--secondary-text-color);
 }
 
 .comment.text {

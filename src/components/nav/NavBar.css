@@ -3,23 +3,18 @@
     justify-content: space-around;
     align-items: center;
     position: fixed;
-    z-index: 10;
+    z-index: 50;
     bottom: 0;
     width: 100vw;
     height: 60px;
     padding: 0;
     margin: 0;
-    list-style: none;
-    background-color: rgb(20, 20, 20);
-    border-top: 1px solid rgb(73, 73, 73);
-}
-
-.navbar__link {
-    text-decoration: none;
+    background-color: var(--main-bg-color);
+    border-top: 1px solid var(--secondary-bg-color);
 }
 
 .icon {
-    fill: rgb(235, 235, 235);
+    fill: var(--primary-icon-color);
     height: 30px;
     width: 30px;
 }

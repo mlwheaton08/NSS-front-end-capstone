@@ -8,8 +8,8 @@
     margin: 0 auto 15px;
     padding: 3px 15px;
     border-radius: 5px;
-    background-color: rgb(68, 68, 68);
-    color: white;
+    background-color: var(--quaternary-bg-color);
+    color: var(--main-text-color);
 }
 
 .comment-form.input {
@@ -21,13 +21,13 @@
     height: 25px;
     margin: 0;
     padding: 0;
-    fill: rgb(114, 114, 114);
+    fill: var(--quinary-icon-color);
 }
 
 .icon.submit.ready {
-    fill: rgb(255, 102, 191);
+    fill: var(--quaternary-icon-color);
 }
 
 .icon.submit.ready:active {
-    fill: rgb(255, 73, 179);
+    fill: var(--tertiary-icon-color);
 }
