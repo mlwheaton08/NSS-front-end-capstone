@@ -1,21 +1,35 @@
 import { useEffect, useState } from "react"
 import { ArticleCard } from "../articles/ArticleCard"
 import "./Home.css"
+import { NSFWterms } from "./NSFWterms"
 
 export const Home = () => {
+    const localProjectUser = localStorage.getItem("capstone_user");
+    const projectUserObject = JSON.parse(localProjectUser);
+
+    const excludedTerms = NSFWterms()
+
+    const [user, setUser] = useState()
     const [randomCategory, setRandomCategory] = useState("")
     const [randomSubCategory, setRandomSubCategory] = useState("")
     const [randomArticle, setRandomArticle] = useState("")
 
+    const getUser = async () => {
+        const response = await fetch(`http://localhost:8088/users/${projectUserObject.id}`)
+        const responseJSON = await response.json()
+        setUser(responseJSON)
+    }
+
     const fetchRandomCategory = async () => {
-        const catResponse = await fetch('http://localhost:8088/categories')
-        const catResponseJSON = await catResponse.json()
-        const randomIndex = Math.floor(Math.random() * catResponseJSON.length)
-        setRandomCategory(catResponseJSON[randomIndex])
+        const response = await fetch('http://localhost:8088/categories')
+        const responseJSON = await response.json()
+        const randomIndex = Math.floor(Math.random() * responseJSON.length)
+        setRandomCategory(responseJSON[randomIndex])
     }
 
     useEffect(
         () => {
+            getUser()
             fetchRandomCategory()
         },
         []
@@ -23,9 +37,9 @@ export const Home = () => {
 
     const fetchRandomSubCategory = async () => {
         if (randomCategory) {
-            const subCatResponse = await fetch(`http://localhost:8088/categories/${randomCategory.id}?_embed=subCategories`)
-            const subCatResponseJSON = await subCatResponse.json()
-            const subCategories = await subCatResponseJSON.subCategories
+            const response = await fetch(`http://localhost:8088/categories/${randomCategory.id}?_embed=subCategories`)
+            const responseJSON = await response.json()
+            const subCategories = await responseJSON.subCategories
             const randomIndex = Math.floor(Math.random() * subCategories.length)
             setRandomSubCategory(subCategories[randomIndex])
         }
@@ -38,6 +52,17 @@ export const Home = () => {
         [randomCategory]
     )
 
+    const familyFriendly = (articles, randomIndex) => {
+        for (const term of excludedTerms) {
+            if (articles[randomIndex].title.includes(term) || articles[randomIndex].teaserText.includes(term)) {
+                console.log(`Cannot use article. Contained term ${excludedTerms.indexOf(term)}`)
+                fetchRandomArticle()
+            } else {
+                setRandomArticle(articles[randomIndex])
+            }
+        }
+    }
+
     const fetchRandomArticle = async () => {
         if (randomSubCategory) {
             let url = `http://localhost:8088/subCategories/${randomSubCategory.id}?_embed=articles`
@@ -45,11 +70,15 @@ export const Home = () => {
                 url =  `http://localhost:8088/categories/${randomCategory.id}?_embed=articles`
             }
     
-            const articleResponse = await fetch(url)
-            const articleResponseJSON = await articleResponse.json()
-            const articles = await articleResponseJSON.articles
+            const response = await fetch(url)
+            const responseJSON = await response.json()
+            const articles = await responseJSON.articles
             const randomIndex = Math.floor(Math.random() * articles.length)
-            setRandomArticle(articles[randomIndex])
+            if (user.familyBrowsing == true) {
+                familyFriendly(articles, randomIndex)
+            } else {
+                setRandomArticle(articles[randomIndex])
+            }
         }
     }
 
