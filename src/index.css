@@ -29,9 +29,9 @@ body {
 
 body.light {
     --main-bg-color: rgb(235, 235, 235);
-    --secondary-bg-color: rgba(201, 209, 206, 0.678);
+    --secondary-bg-color: rgba(206, 206, 206, 0.678);
     --tertiary-bg-color: rgb(206, 206, 206);
-    --quaternary-bg-color: rgb(182, 182, 182);
+    --quaternary-bg-color: rgb(201, 201, 201);
     --quinary-bg-color: rgb(66, 66, 66);
 
     --main-text-color: rgb(20, 20, 20);

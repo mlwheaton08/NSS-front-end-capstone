@@ -72,7 +72,7 @@ export const ArticleSearch = ({ searchTermState, setSearchTerms }) => {
                 }
             }
         >
-            <option value="">Select a Category</option>
+            <option value="">All Categories</option>
             {
                 categoryOptions.map((category) => {
                     return <option value={category.id} key={`category--${category.id}`}>{category.name}</option>
