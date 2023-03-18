@@ -67,7 +67,7 @@ export const Preferences = () => {
             </section>
 
             <section className="light-mode">
-                <span>Toggle Light Mode</span>
+                <span>Toggle Light/Dark Mode</span>
                 <svg className="icon light-mode" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" onClick={() => {
                     document.body.classList.toggle("light")
                 }}>

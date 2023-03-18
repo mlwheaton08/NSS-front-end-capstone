@@ -54,7 +54,7 @@ export const Home = () => {
 
     const familyFriendly = (articles, randomIndex) => {
         for (const term of excludedTerms) {
-            if (articles[randomIndex].title.includes(term) || articles[randomIndex].teaserText.includes(term)) {
+            if (articles[randomIndex].title.toLowerCase().includes(term) || articles[randomIndex].teaserText.toLowerCase().includes(term)) {
                 console.log(`Cannot use article. Contained term ${excludedTerms.indexOf(term)}`)
                 fetchRandomArticle()
             } else {
