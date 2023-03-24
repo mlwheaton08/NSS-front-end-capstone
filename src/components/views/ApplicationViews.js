@@ -15,7 +15,7 @@ export const ApplicationViews = () => {
             <Route path="/" element={
                 <>
                     <div className="hero">
-                        <h1 id="title">Aimless</h1>
+                        <h1 id="title">Aimless - mobile</h1>
                     </div>
 
                     <Outlet />
