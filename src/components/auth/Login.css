@@ -9,7 +9,7 @@ fieldset {
   border: 0;
 }
 
-.form--login {
+/*.form--login {
   display: inline-block;
   margin: 0 auto;
   text-align: left;
@@ -60,4 +60,9 @@ fieldset {
 .button--close {
   position: relative;
   bottom: -2rem;
+} */
+
+.link--register {
+  border: 1px solid white;
+  padding: 4px 10px;
 }

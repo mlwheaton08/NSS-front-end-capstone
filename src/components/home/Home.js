@@ -19,20 +19,34 @@ export const Home = () => {
         const responseJSON = await response.json()
         setUser(responseJSON)
     }
+    
+    useEffect(
+        () => {
+            getUser()
+        },
+        []
+    )
 
     const fetchRandomCategory = async () => {
-        const response = await fetch('http://localhost:8088/categories')
-        const responseJSON = await response.json()
-        const randomIndex = Math.floor(Math.random() * responseJSON.length)
-        setRandomCategory(responseJSON[randomIndex])
+        if (user) {
+            const response = await fetch('http://localhost:8088/categories')
+            const responseJSON = await response.json()
+            const randomIndex = Math.floor(Math.random() * responseJSON.length)
+    
+            if (user.familyBrowsing && responseJSON[randomIndex].id === 14){
+                console.log('Cannot use Death category. Id 14')
+                fetchRandomCategory()
+            } else {
+                setRandomCategory(responseJSON[randomIndex])
+            }
+        }
     }
 
     useEffect(
         () => {
-            getUser()
             fetchRandomCategory()
         },
-        []
+        [user]
     )
 
     const fetchRandomSubCategory = async () => {
@@ -74,7 +88,7 @@ export const Home = () => {
             const responseJSON = await response.json()
             const articles = await responseJSON.articles
             const randomIndex = Math.floor(Math.random() * articles.length)
-            if (user.familyBrowsing == true) {
+            if (user.familyBrowsing) {
                 familyFriendly(articles, randomIndex)
             } else {
                 setRandomArticle(articles[randomIndex])
