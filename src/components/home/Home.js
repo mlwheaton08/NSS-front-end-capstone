@@ -34,7 +34,7 @@ export const Home = () => {
             const randomIndex = Math.floor(Math.random() * responseJSON.length)
     
             if (user.familyBrowsing && responseJSON[randomIndex].id === 14){
-                console.log('Cannot use Death category. Id 14')
+                console.log(`Cannot use ${responseJSON[randomIndex].name} category. Id ${responseJSON[randomIndex].id}`)
                 fetchRandomCategory()
             } else {
                 setRandomCategory(responseJSON[randomIndex])

@@ -53,10 +53,17 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: 400;
 }
 
+fieldset {
+    min-width: 0;
+    padding: 0;
+    margin: 0;
+    border: 0;
+}
+
 input {
     all: unset;
-    background-color: rgba(232, 255, 246, 0.13);
-    color: white;
+    background-color: var(--secondary-bg-color);
+    color: var(--main-text-color);
     font-weight: 300;
 }
 

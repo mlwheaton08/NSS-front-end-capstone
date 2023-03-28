@@ -2,8 +2,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 10px;
-    margin-bottom: 10px;
+    gap: 7px;
+    margin-bottom: 7px;
 }
 
 #search-bar {
@@ -32,10 +32,38 @@
     background-color: rgba(0, 0, 0, 0);
 }
 
-/* #filter-category {
-    background-color: rgba(123, 158, 255, 0.555);
+.filter {
+    display: flex;
+    justify-content: center;
+    width: 90%;
 }
 
-#filter-subcategory {
-    background-color: rgba(115, 246, 255, 0.541);
-} */
+.filter > * {
+    width: 50%;
+    text-align: center;
+    text-overflow: wrap;
+}
+
+.filter-category {
+    background-color: var(--category-bg-color);
+    border-radius: 5px;
+}
+
+.filter-category.subcat {
+    border-radius: 0;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.filter-subcategory {
+    background-color: var(--subcategory-bg-color);
+    border-radius: 0;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+option {
+    background-color: var(--secondary-bg-color);
+    color: var(--main-bg-color);
+    text-align: center;
+}
