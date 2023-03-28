@@ -121,6 +121,20 @@ export const ArticleCard = ({ category, subCategory, article, fetchFavorites, fe
         fetchReadLater()
     }
 
+    const subcatDisplay = (subcatName) => {
+        if (subcatName) {
+            if (subcatName.includes(" - General")) {
+                return "General"
+            } else if (subcatName.includes("Music - ")) {
+                return subcatName.replace("Music - ", "")
+            } else if (subcatName.includes("Musical Works - ")) {
+                return subcatName.replace("Musical Works - ", "")
+            } else {
+                return subcatName
+            }
+        }
+    }
+
     
     return <div className="article-card">
             <div className="article-card-header">
@@ -128,13 +142,14 @@ export const ArticleCard = ({ category, subCategory, article, fetchFavorites, fe
                     <Link className="article-card-category" to={`/browse/${category.id}/0/no_search/1`} onClick={() => {
                         navigate(`/browse/${category.id}/0/no_search/1`)
                         window.location.reload(false)
-                    }}>{category.name}</Link>
+                        }}>{category.name}
+                    </Link>
                     {
                         subCategory.name !== "No subcategory"
                             ? <Link className="article-card-subcategory" to={`/browse/${category.id}/${subCategory.id}/no_search/1`} onClick={() => {
                                     navigate(`/browse/${category.id}/${subCategory.id}/no_search/1`)
                                     window.location.reload(false)
-                                }}>{subCategory.name}
+                                }}>{subcatDisplay(subCategory.name)}
                             </Link>
                             : ""
                     }

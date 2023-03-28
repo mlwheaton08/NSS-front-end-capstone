@@ -43,6 +43,28 @@ export const ArticleSearch = ({ searchTermState, setSearchTerms }) => {
         }
     }
 
+    const checkSubcat = () => {
+        if (subCategoryOptions.length <= 1) {
+            return "filter-category"
+        } else {
+            return "filter-category subcat"
+        }
+    }
+
+    const subcatDisplay = (subcatName) => {
+        if (subcatName) {
+            if (subcatName.includes(" - General")) {
+                return "General"
+            } else if (subcatName.includes("Music - ")) {
+                return subcatName.replace("Music - ", "")
+            } else if (subcatName.includes("Musical works - ")) {
+                return subcatName.replace("Musical works - ", "")
+            } else {
+                return subcatName
+            }
+        }
+    }
+
 
     return <form id="search-form">
         <section id="search-bar">
@@ -62,45 +84,47 @@ export const ArticleSearch = ({ searchTermState, setSearchTerms }) => {
             />
         </section>
         
-        <select id="filter-category" name="categories" value={searchTermState.categoryId}
-            onChange={
-                (evt) => {
-                    const copy = {...searchTermState}
-                    copy.categoryId = evt.target.value
-                    copy.subCategoryId = ""
-                    setSearchTerms(copy)
+        <section className="filter">
+            <select className={checkSubcat()} name="categories" value={searchTermState.categoryId}
+                onChange={
+                    (evt) => {
+                        const copy = {...searchTermState}
+                        copy.categoryId = evt.target.value
+                        copy.subCategoryId = ""
+                        setSearchTerms(copy)
+                    }
                 }
-            }
-        >
-            <option value="">All Categories</option>
-            {
-                categoryOptions.map((category) => {
-                    return <option value={category.id} key={`category--${category.id}`}>{category.name}</option>
-                })
-            }
-        </select>
+            >
+                <option value="">All Categories</option>
+                {
+                    categoryOptions.map((category) => {
+                        return <option value={category.id} key={`category--${category.id}`}>{category.name}</option>
+                    })
+                }
+            </select>
 
-        {
-            subCategoryOptions.length <= 1
-                ? ""
-                : <>
-                    <select id="filter-subcategory" name="subCategories" value={searchTermState.subCategoryId}
-                        onChange={
-                            (evt) => {
-                                const copy = {...searchTermState}
-                                copy.subCategoryId = evt.target.value
-                                setSearchTerms(copy)
+            {
+                subCategoryOptions.length <= 1
+                    ? ""
+                    : <>
+                        <select className="filter-subcategory" name="subCategories" value={searchTermState.subCategoryId}
+                            onChange={
+                                (evt) => {
+                                    const copy = {...searchTermState}
+                                    copy.subCategoryId = evt.target.value
+                                    setSearchTerms(copy)
+                                }
                             }
-                        }
-                    >
-                        <option value="">All Subcategories</option>
-                        {
-                            subCategoryOptions.map((subCategory) => {
-                                return <option value={subCategory.id} key={`subCategory--${subCategory.id}`}>{subCategory.name}</option>
-                            })
-                        }
-                    </select>
-                </>
-        }
+                        >
+                            <option value="">All Subcategories</option>
+                            {
+                                subCategoryOptions.map((subCategory) => {
+                                    return <option value={subCategory.id} key={`subCategory--${subCategory.id}`}>{subcatDisplay(subCategory.name)}</option>
+                                })
+                            }
+                        </select>
+                    </>
+            }
+        </section>
     </form>
 }

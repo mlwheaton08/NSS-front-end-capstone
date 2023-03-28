@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Login.css";
+import "../views/ApplicationViews.css"
 
 export const Register = (props) => {
   const [user, setUser] = useState({
@@ -54,37 +55,36 @@ export const Register = (props) => {
     setUser(copy);
   };
 
-  return (
+  return <>
+    <div className="hero">
+        <h1 id="title">Aimless - mobile</h1>
+    </div>
+
     <main style={{ textAlign: "center" }}>
-      <form className="form--login" onSubmit={handleRegister}>
-        <h1 className="h3 mb-3 font-weight-normal">Please Register</h1>
+      <form className="form--register" onSubmit={handleRegister}>
         <fieldset>
-          <label htmlFor="fullName"> Full Name </label>
-          <input
+          <input id="input--name-register"
             onChange={updateUser}
             type="text"
-            id="fullName"
             className="form-control"
-            placeholder="Enter your name"
+            placeholder="Full Name"
             required
             autoFocus
           />
         </fieldset>
         <fieldset>
-          <label htmlFor="email"> Email address </label>
-          <input
+          <input id="input--email-register"
             onChange={updateUser}
             type="email"
-            id="email"
             className="form-control"
             placeholder="Email address"
             required
           />
         </fieldset>
         <fieldset>
-          <button type="submit"> Register </button>
+          <button className="button--register" type="submit"> Register </button>
         </fieldset>
       </form>
     </main>
-  );
+  </>
 };
