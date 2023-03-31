@@ -108,6 +108,7 @@ export const Home = () => {
 
         <div id="random-card">
             <ArticleCard
+                location={"home"}
                 category={randomCategory}
                 subCategory={randomSubCategory}
                 article={randomArticle}

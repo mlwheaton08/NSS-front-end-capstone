@@ -113,6 +113,7 @@ export const Browse = ({ searchTermState }) => {
             {
                 articles.map(article => {
                     return <ArticleCard
+                        location={"browse"}
                         key={`article--${article.id}`}
                         category={article.category}
                         subCategory={article.subCategory}
@@ -122,7 +123,7 @@ export const Browse = ({ searchTermState }) => {
             }
         </div>
 
-        <div className="page-turn-buttons bottom">
+        {/* <div className="page-turn-buttons bottom">
             <span>
                 {
                     page === 1
@@ -154,7 +155,7 @@ export const Browse = ({ searchTermState }) => {
                     </svg>
                 }
             </span>
-        </div>
+        </div> */}
 
     </div>
 }
