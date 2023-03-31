@@ -1,65 +1,92 @@
-.article-card {
+.article-card.home {
     width: 95vw;
-    padding: 2px 2px 15px;
-    background-color: var(--secondary-bg-color);
-    border-radius: 2%;
+    padding: 10px 2px 20px;
+    border-top: 1px solid var(--tertiary-bg-color);
+    border-bottom: 1px solid var(--tertiary-bg-color);
 }
 
+.article-card.browse {
+    width: 90vw;
+    padding: 10px 2px 20px;
+    border-top: 1px solid var(--tertiary-bg-color);
+}
 
-.article-card-header {
+.header.home {
     display: flex;
     justify-content: space-between;
+    width: 100%;
     z-index: 10;
-    font-weight: 300;
+    font-weight: 400;
     font-size: 0.9rem;
     margin: 5px;
 }
 
-.article-card-category-container {
+.header.browse {
     display: flex;
-    flex-direction: column;
-    gap: 5px;
+    justify-content: space-between;
+    z-index: 10;
+    font-weight: 400;
+    font-size: 0.9rem;
+    margin: 5px;
 }
 
-.article-card-category-container > * {
-    padding: 1px 4px;
-    border-radius: 3px;
+.category-container {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.category-container > * {
     width: fit-content;
 }
 
-.article-card-category {
-    background-color: var(--category-bg-color);
+.category {
+    color: var(--main-text-color);
 }
 
-.article-card-subcategory {
-    background-color: var(--subcategory-bg-color);
+.subcategory {
+    color: var(--secondary-text-color);
 }
 
-.article-card-icon {
+.icon {
     width: 27px;
     height: 27px;
-    fill: var(--primary-icon-color);
 }
 
-.article-card-favorite {
+.icon.false {
+    fill: var(--secondary-bg-color);
+}
+
+.favorite {
     margin-left: auto;
     margin-right: 12px;
 }
 
-.article-card-unfavorite {
-    margin-left: auto;
-    margin-right: 12px;
+.favorite.true {
+    fill: var(--favorite);
 }
 
-.article-card-title {
+.read-later.true {
+    fill: var(--read-later);
+}
+
+.title.home {
     text-align: center;
     overflow-wrap: break-word;
-    font-weight: 400;
     font-size: 1.65rem;
+    margin: 15px;
 }
 
-.article-card-teaser-text {
+.title.browse {
     text-align: center;
+    overflow-wrap: break-word;
+    font-size: 1.65rem;
+    margin: 10px;
+}
+
+.teaser-text {
+    text-align: center;
+    margin: 0;
 }
 
 a {

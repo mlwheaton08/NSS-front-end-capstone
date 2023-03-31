@@ -12,10 +12,34 @@
     border: 1px solid var(--secondary-bg-color);
 }
 
+.subnav-option {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+.subnav-text {
+    font-weight: 300;
+    font-size: 0.72rem;
+    color: var(--secondary-text-color);
+}
+
 .icon.subnav {
-    fill: var(--secondary-icon-color);
     height: 23px;
     width: 23px;
+}
+
+.icon.subnav.favorites {
+    fill: var(--favorite);
+}
+
+.icon.subnav.read-later {
+    fill: var(--read-later);
+}
+
+.icon.subnav.preferences {
+    fill: var(--secondary-icon-color);
 }
 
 .icon.logout {

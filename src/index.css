@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
 
 body {
-    --main-bg-color: rgb(20, 20, 20);
+    --main-bg-color: rgb(0, 0, 0);
     --secondary-bg-color: rgba(232, 255, 246, 0.116);
     --tertiary-bg-color: rgb(39, 39, 39);
     --quaternary-bg-color: rgb(68, 68, 68);
@@ -15,11 +15,29 @@ body {
     --subcategory-bg-color: rgba(0, 238, 255, 0.192);
 
     --primary-icon-color: rgb(235, 235, 235);
-    --secondary-icon-color: rgb(173, 239, 241);
+    --secondary-icon-color: rgb(214, 214, 214);
     --tertiary-icon-color: rgb(252, 82, 181);
     --quaternary-icon-color: rgb(253, 157, 213);
     --quinary-icon-color: rgb(114, 114, 114);
     --senary-icon-color: rgba(255, 255, 255, 0.171);
+
+    --favorite: rgba(255, 196, 0, 0.877);
+    --read-later: rgba(0, 118, 253, 0.877);
+
+    /* --category-id-1-color: rgb(255, 108, 108);
+    --category-id-2-color: rgb(161, 0, 0);
+    --category-id-3-color: rgb(255, 104, 35);
+    --category-id-4-color: rgb(207, 66, 0);
+    --category-id-5-color: rgb(255, 252, 91);
+    --category-id-6-color: rgb(192, 189, 0);
+    --category-id-7-color: rgb(81, 255, 58);
+    --category-id-8-color: rgb(20, 168, 0);
+    --category-id-9-color: rgb(78, 255, 240);
+    --category-id-10-color: rgb(0, 168, 154);
+    --category-id-11-color: rgb(53, 67, 255);
+    --category-id-12-color: rgb(0, 11, 172);
+    --category-id-13-color: rgb(195, 66, 255);
+    --category-id-14-color: rgb(127, 0, 185); */
 
     background-color: var(--main-bg-color);
     color: var(--main-text-color);
@@ -28,25 +46,28 @@ body {
 }
 
 body.light {
-    --main-bg-color: rgb(235, 235, 235);
+    --main-bg-color: rgb(255, 255, 255);
     --secondary-bg-color: rgba(206, 206, 206, 0.678);
     --tertiary-bg-color: rgb(206, 206, 206);
     --quaternary-bg-color: rgb(201, 201, 201);
     --quinary-bg-color: rgb(66, 66, 66);
 
-    --main-text-color: rgb(20, 20, 20);
+    --main-text-color: rgb(0, 0, 0);
     --secondary-text-color: rgb(88, 88, 88);
     --tertiary-text-color: rgb(187, 68, 137);
 
     --category-bg-color: rgba(0, 68, 255, 0.226);
     --subcategory-bg-color: rgba(0, 238, 255, 0.205);
 
-    --primary-icon-color: rgb(20, 20, 20);
-    --secondary-icon-color: rgb(0, 107, 110);
+    --primary-icon-color: rgb(0, 0, 0);
+    --secondary-icon-color: rgb(70, 70, 70);
     --tertiary-icon-color: rgb(207, 0, 121);
     --quaternary-icon-color: rgb(187, 68, 137);
     --quinary-icon-color: rgb(155, 155, 155);
     --senary-icon-color: rgba(0, 0, 0, 0.144);
+    
+    --favorite: rgb(255, 196, 0);
+    --read-later: rgb(0, 118, 253);
 }
 
 h1, h2, h3, h4, h5, h6 {
