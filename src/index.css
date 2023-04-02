@@ -25,6 +25,14 @@ body {
     --read-later: rgba(0, 118, 253, 0.877);
 
     --nav-height: 60px;
+    --subnav-height: 45px;
+    --subnav-padding: 10px;
+
+    --bottom-gap: calc(var(--nav-height) + 1px);
+    --bottom-gap-subnav: calc(var(--nav-height)
+        + var(--subnav-height)
+        + (var(--subnav-padding) * 2)
+        + 3px);
 
     /* --category-id-1-color: rgb(255, 108, 108);
     --category-id-2-color: rgb(161, 0, 0);
@@ -73,6 +81,7 @@ body.light {
 }
 
 h1, h2, h3, h4, h5, h6 {
+    margin: 0;
     font-weight: 400;
 }
 

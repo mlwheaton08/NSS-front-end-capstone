@@ -4,6 +4,11 @@
     justify-content: center;
     align-items: center;
     gap: 10px;
+    background-color: var(--tertiary-bg-color);
+
+    --header-height: 50px;
+    --p-height: 50px;
+    --p-position: 170px;
 }
 
 #hero {
@@ -15,52 +20,76 @@
     z-index: 10;
     top: 0;
     width: 100vw;
-    height: 80px;
-    text-align: center;
+    height: var(--header-height);
     padding: 0;
     background-color: var(--main-bg-color);
-    border-bottom: 1px solid var(--secondary-bg-color);
+    /* border-bottom: 1px solid var(--secondary-bg-color); */
 }
 
 #title {
     margin: 0;
+    font-size: 1.6rem;
+    font-weight: 300;
 }
 
-#random-card {
+.home-paragraph-container {
     position: fixed;
-    top: 35vh;
+    top: calc(var(--header-height) + var(--p-position));
+    height: var(--p-height);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+}
+
+.home-paragraph-container > p {
+    margin: 0;
+    font-weight: 300;
+    color: var(--secondary-text-color);
+    font-style: italic;
+}
+
+.random-card {
+    position: fixed;
+    top: calc(var(--header-height) + var(--p-height) + var(--p-position));
 }
 
 .btn-random-fetch-container {
     position: fixed;
     display: flex;
+    flex-direction: column;
     align-items: center;
-    gap: 5px;
-    bottom: 150px;
+    align-content: center;
+    bottom: var(--bottom-gap-subnav);
+    width: 100vw;
+}
+
+.btn-random-fetch {
+    width: 100%;
+    height: var(--nav-height);
+    text-align: center;
+    font-size: 1.5rem;
+    background-color: var(--main-bg-color);
+    /* border: 1px solid var(--quaternary-bg-color); */
+    color: var(--tertiary-icon-color);
+    text-decoration: underline;
+    transition: color 0.2s;
+}
+
+.btn-random-fetch:active {
+    color: var(--tertiary-text-color);
 }
 
 .btn-category-container {
     display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    gap: 5px;
+    justify-content: center;
+    width: 100%;
 }
 
-.btn-random-fetch {
-    font-size: 0.85rem;
-}
-
-.btn-random-fetch:active {
-    box-shadow: inset 0 0 3px var(--main-text-color);
-}
-
-#next-button {
-    margin-bottom: 5px;
-    font-size: 2rem;
-}
-
-#next-arrow-icon {
-    margin-left: 10px;
-    height: 25px;
-    fill: var(--tertiary-icon-color);
+.btn-category-container > * {
+    width: 50%;
+    height: 30px;
+    text-align: center;
+    border-radius: 0;
+    background-color: var(--main-bg-color);
 }
