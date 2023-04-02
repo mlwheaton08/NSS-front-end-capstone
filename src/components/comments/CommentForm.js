@@ -32,7 +32,7 @@ export const CommentForm = ({ userId, articleId, fetchComments }) => {
         fetchComments()
     }
 
-    const checkSearchInput = () => {
+    const checkCommentInput = () => {
         if (comment.text === "") {
             return "icon submit"
         } else {
@@ -54,8 +54,15 @@ export const CommentForm = ({ userId, articleId, fetchComments }) => {
                         copy.text = evt.target.value
                         updateComment(copy)
                     }
-                } />
-            <svg className={checkSearchInput()} viewBox="0 0 448 512" onClick={(clickEvent) => {
+                }
+                onKeyDown={(e) => {
+                    if (e.key === "Enter" && comment.text !== "") {
+                        postComment(e)
+                    }
+                }}
+            />
+
+            <svg className={checkCommentInput()} viewBox="0 0 448 512" onClick={(clickEvent) => {
                 if (comment.text !== "") {
                     postComment(clickEvent)
                 }

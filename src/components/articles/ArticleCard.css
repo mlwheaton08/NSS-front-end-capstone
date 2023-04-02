@@ -8,24 +8,26 @@
 .article-card.browse {
     width: 90vw;
     padding: 10px 2px 20px;
-    border-top: 1px solid var(--tertiary-bg-color);
+    border-bottom: 1px solid var(--tertiary-bg-color);
 }
 
 .header.home {
     display: flex;
+    flex-direction: row;
     justify-content: space-between;
     width: 100%;
     z-index: 10;
-    font-weight: 400;
+    font-weight: 300;
     font-size: 0.9rem;
     margin: 5px;
 }
 
 .header.browse {
     display: flex;
+    flex-direction: row;
     justify-content: space-between;
     z-index: 10;
-    font-weight: 400;
+    font-weight: 300;
     font-size: 0.9rem;
     margin: 5px;
 }
@@ -38,14 +40,18 @@
 
 .category-container > * {
     width: fit-content;
+    padding: 1px 4px;
+    border-radius: 5px;
+    color: var(--main-text-color);
+    background-color: var(--secondary-bg-color);
 }
 
 .category {
-    color: var(--main-text-color);
+    background-color: var(--category-bg-color);
 }
 
 .subcategory {
-    color: var(--secondary-text-color);
+    background-color: var(--subcategory-bg-color);
 }
 
 .icon {

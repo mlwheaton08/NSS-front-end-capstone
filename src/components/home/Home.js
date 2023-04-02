@@ -104,7 +104,11 @@ export const Home = () => {
     )
 
 
-    return <div className="home">
+    return <div id="home">
+
+        <div id="hero">
+            <h1 id="title">Aimless - mobile</h1>
+        </div>
 
         <div id="random-card">
             <ArticleCard

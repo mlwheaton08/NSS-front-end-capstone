@@ -20,7 +20,8 @@
 .comments-container {
     position: fixed;
     z-index: 11;
-    right: 3vw;
+    left: 50%;
+    transform: translateX(-50%);
     top: 135px;
     height: 70vh;
     width: 94vw;

@@ -1,31 +1,33 @@
-#search-button {
-    font-family: 'Rubik', sans-serif;
+#browse {
+   margin-top: 20px;
+}
+
+.header-browse {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 8px;
-    margin: 0 auto 50px;
-    padding: 4px 18px;
-    border: none;
-    border-radius: 5px;
-    font-size: 1rem;
-    color: var(--main-text-color);
-    background-color: var(--secondary-bg-color);
+    flex-direction: column;
+    height: calc(16.5vh - 20px);
+    border-bottom: 1px solid var(--quaternary-bg-color);
 }
 
-#search-button:active {
-    box-shadow: inset 0 0 3px var(--main-text-color);
-}
-
-#search-arrow-icon {
-    height: 20px;
-    fill: var(--tertiary-icon-color);
+.header-browse.subcat {
+    height: calc(19.5vh - 20px);
 }
 
 .article-cards {
+    position: fixed;
+    top: 16.5vh;
+    height: calc(83.5vh - var(--nav-height) - 1px);
+    overflow: scroll;
+    left: 50%;
+    transform: translateX(-50%);
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+.article-cards.subcat {
+    top: 19.5vh;
+    height: calc(75.5vh - var(--nav-height) - 1px);
 }
 
 .page-turn-buttons {
