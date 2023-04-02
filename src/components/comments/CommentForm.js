@@ -32,7 +32,7 @@ export const CommentForm = ({ userId, articleId, fetchComments }) => {
         fetchComments()
     }
 
-    const checkSearchInput = () => {
+    const checkCommentInput = () => {
         if (comment.text === "") {
             return "icon submit"
         } else {
@@ -62,7 +62,7 @@ export const CommentForm = ({ userId, articleId, fetchComments }) => {
                 }}
             />
 
-            <svg className={checkSearchInput()} viewBox="0 0 448 512" onClick={(clickEvent) => {
+            <svg className={checkCommentInput()} viewBox="0 0 448 512" onClick={(clickEvent) => {
                 if (comment.text !== "") {
                     postComment(clickEvent)
                 }

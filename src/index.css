@@ -2,7 +2,7 @@
 
 body {
     --main-bg-color: rgb(0, 0, 0);
-    --secondary-bg-color: rgba(232, 255, 246, 0.116);
+    --secondary-bg-color: rgba(255, 255, 255, 0.116);
     --tertiary-bg-color: rgb(39, 39, 39);
     --quaternary-bg-color: rgb(68, 68, 68);
     --quinary-bg-color: rgb(214, 214, 214);
@@ -23,6 +23,8 @@ body {
 
     --favorite: rgba(255, 196, 0, 0.877);
     --read-later: rgba(0, 118, 253, 0.877);
+
+    --nav-height: 60px;
 
     /* --category-id-1-color: rgb(255, 108, 108);
     --category-id-2-color: rgb(161, 0, 0);
