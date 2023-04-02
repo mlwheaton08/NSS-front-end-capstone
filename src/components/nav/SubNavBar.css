@@ -4,10 +4,10 @@
     align-items: center;
     position: fixed;
     z-index: 50;
-    bottom: 60px;
+    bottom: var(--nav-height);
     width: 100vw;
-    height: 45px;
-    padding: 10px 0;
+    height: var(--subnav-height);
+    padding: var(--subnav-padding) 0;
     background-color: var(--main-bg-color);
     border: 1px solid var(--secondary-bg-color);
 }

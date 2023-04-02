@@ -2,12 +2,14 @@ import { useEffect, useState } from "react"
 import { ArticleCard } from "../articles/ArticleCard"
 import "./Home.css"
 import { NSFWterms } from "./NSFWterms"
+import { HomeParagraphOptions } from "./HomeParagraphOptions"
 
 export const Home = () => {
     const localProjectUser = localStorage.getItem("capstone_user");
     const projectUserObject = JSON.parse(localProjectUser);
 
     const excludedTerms = NSFWterms()
+    const paragraphOptions = HomeParagraphOptions()
 
     const [user, setUser] = useState()
     const [randomCategory, setRandomCategory] = useState("")
@@ -33,7 +35,7 @@ export const Home = () => {
             const responseJSON = await response.json()
             const randomIndex = Math.floor(Math.random() * responseJSON.length)
     
-            if (user.familyBrowsing && responseJSON[randomIndex].id === 14){
+            if (user.familyBrowsing && responseJSON[randomIndex].id === 14) {
                 console.log(`Cannot use ${responseJSON[randomIndex].name} category. Id ${responseJSON[randomIndex].id}`)
                 fetchRandomCategory()
             } else {
@@ -96,6 +98,11 @@ export const Home = () => {
         }
     }
 
+    const fetchRandomParagraph = () => {
+        const randomIndex = Math.floor(Math.random() * paragraphOptions.length)
+        return paragraphOptions[randomIndex]
+    }
+
     useEffect(
         () => {
             fetchRandomArticle()
@@ -106,34 +113,35 @@ export const Home = () => {
 
     return <div id="home">
 
-        <div id="hero">
+        <section id="hero">
             <h1 id="title">Aimless - mobile</h1>
-        </div>
+        </section>
 
-        <div id="random-card">
+        <section className="home-paragraph-container">
+            <p>{fetchRandomParagraph()}</p>
+        </section>
+
+        <section className="random-card">
             <ArticleCard
                 location={"home"}
                 category={randomCategory}
                 subCategory={randomSubCategory}
                 article={randomArticle}
             />
-        </div>
+        </section>
 
-        <div className="btn-random-fetch-container">
+        <section className="btn-random-fetch-container">
+            <button className="btn-random-fetch" id="next-button" onClick={() => fetchRandomCategory()}>
+                Find me a different article
+            </button>
             <div className="btn-category-container">
-                <button className="btn-random-fetch" id="keep-category-button" onClick={() =>fetchRandomSubCategory()}>Keep Category</button>
+                <button id="keep-category-button" onClick={() =>fetchRandomSubCategory()}>Keep Category</button>
                 {
                     randomSubCategory.name === "No subcategory"
                     ? ""
-                    : <button className="btn-random-fetch" id="keep-subcategory-button" onClick={() => fetchRandomArticle()}>Keep SubCategory</button>
+                    : <button  id="keep-subcategory-button" onClick={() => fetchRandomArticle()}>Keep SubCategory</button>
                 }
             </div>
-            <button className="btn-random-fetch" id="next-button" onClick={() => fetchRandomCategory()}>
-                Next
-                <svg id="next-arrow-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-                    <path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"/>
-                </svg>
-            </button>
-        </div>
+        </section>
     </div>
 }

@@ -65,9 +65,18 @@ export const ArticleSearchForm = ({ searchTermState, setSearchTerms, enterSearch
         }
     }
 
+    const checkValidCategory = () => {
+        if (!searchTermState.categoryId || parseInt(searchTermState.categoryId) === 0) {
+            return false
+        } else {
+            return true
+        }
+    }
+
     const checkSearchInput = () => {
+        const validCategory = checkValidCategory()
         if (!searchTermState.search
-            && !searchTermState.categoryId
+            && !validCategory
             && !searchTermState.subCategoryId) {
             return false
         } else {
@@ -75,9 +84,9 @@ export const ArticleSearchForm = ({ searchTermState, setSearchTerms, enterSearch
         }
     }
 
-    const getSearchClassName = () => {
-        const validSearch = checkSearchInput()
-        if (validSearch && searchTermState.categoryId !== "0") {
+    const getSearchIconClassName = () => {
+        const validSearchTerms = checkSearchInput()
+        if (validSearchTerms) {
             return "search icon submit ready"
         } else {
             return "search icon submit"
@@ -98,13 +107,13 @@ export const ArticleSearchForm = ({ searchTermState, setSearchTerms, enterSearch
                     }
                 }
                 onKeyDown={(e) => {
-                    if (e.key === "Enter" && checkSearchInput()) {
+                    if (e.key === "Enter") {
                         e.preventDefault()
                         enterSearch(e)
                     }
                 }}
             />
-            <svg className={getSearchClassName()} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" onClick={(clickEvent) => {
+            <svg className={getSearchIconClassName()} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" onClick={(clickEvent) => {
                 enterSearch(clickEvent)
             }}>
                 <path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352c79.5 0 144-64.5 144-144s-64.5-144-144-144S64 128.5 64 208s64.5 144 144 144z"/>
@@ -122,7 +131,7 @@ export const ArticleSearchForm = ({ searchTermState, setSearchTerms, enterSearch
                     }
                 }
                 onKeyDown={(e) => {
-                    if (e.key === "Enter" && checkSearchInput()) {
+                    if (e.key === "Enter") {
                         e.preventDefault()
                         enterSearch(e)
                     }
@@ -149,7 +158,7 @@ export const ArticleSearchForm = ({ searchTermState, setSearchTerms, enterSearch
                                 }
                             }
                             onKeyDown={(e) => {
-                                if (e.key === "Enter" && checkSearchInput()) {
+                                if (e.key === "Enter") {
                                     e.preventDefault()
                                     enterSearch(e)
                                 }

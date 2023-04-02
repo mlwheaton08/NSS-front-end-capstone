@@ -6,7 +6,7 @@
     z-index: 50;
     bottom: 0;
     width: 100vw;
-    height: 60px;
+    height: var(--nav-height);
     padding: 0;
     margin: 0;
     background-color: var(--main-bg-color);
