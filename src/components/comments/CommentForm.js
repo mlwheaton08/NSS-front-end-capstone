@@ -54,7 +54,14 @@ export const CommentForm = ({ userId, articleId, fetchComments }) => {
                         copy.text = evt.target.value
                         updateComment(copy)
                     }
-                } />
+                }
+                onKeyDown={(e) => {
+                    if (e.key === "Enter" && comment.text !== "") {
+                        postComment(e)
+                    }
+                }}
+            />
+
             <svg className={checkSearchInput()} viewBox="0 0 448 512" onClick={(clickEvent) => {
                 if (comment.text !== "") {
                     postComment(clickEvent)

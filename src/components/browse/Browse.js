@@ -68,7 +68,19 @@ export const Browse = ({ searchTermState }) => {
     }
 
 
-    return <div id="browse">
+    return <div id="browse" onKeyDown={(e) => {
+        if (e.key === "Enter") {
+            enterSearch(e)
+        }
+    }}>
+
+        <input
+            onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                    enterSearch(e)
+                }
+            }}
+        />
 
         <button id="search-button" onClick={() => enterSearch()}>
             <span>Search</span>
