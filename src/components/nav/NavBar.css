@@ -13,8 +13,25 @@
     border-top: 1px solid var(--secondary-bg-color);
 }
 
+.navbar.subnav-path-subnav-hidden.favorites {
+    border-top: 2px solid var(--favorite);
+}
+
+.navbar.subnav-path-subnav-hidden.read-later {
+    border-top: 2px solid var(--read-later);
+}
+
+.navbar.subnav-path-subnav-hidden.preferences {
+    border-top: 2px solid var(--main-text-color);
+}
+
 .icon {
+    fill: var(--secondary-icon-color);
+    height: 28px;
+    width: 28px;
+    transition: fill 0.2s;
+}
+
+.selected {
     fill: var(--primary-icon-color);
-    height: 30px;
-    width: 30px;
 }
