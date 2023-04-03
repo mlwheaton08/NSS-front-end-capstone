@@ -25,23 +25,35 @@
     color: var(--secondary-text-color);
 }
 
-.icon.subnav {
-    height: 23px;
-    width: 23px;
+.icon-subnav {
+    height: 26px;
+    width: 26px;
 }
 
-.icon.subnav.favorites {
+.favorites {
     fill: var(--favorite);
 }
 
-.icon.subnav.read-later {
+.favorites.selected {
+    color: var(--favorite);
+}
+
+.read-later {
     fill: var(--read-later);
 }
 
-.icon.subnav.preferences {
+.read-later.selected {
+    color: var(--read-later);
+}
+
+.preferences {
     fill: var(--secondary-icon-color);
 }
 
-.icon.logout {
+.preferences.selected {
+    color: var(--primary-icon-color);
+}
+
+.icon-subnav.logout {
     fill: var(--tertiary-icon-color);
 }
