@@ -18,3 +18,7 @@
 .icon.family-browsing.false {
     fill: var(--senary-icon-color);
 }
+
+.icon.light-mode {
+    fill: var(--primary-icon-color);
+}

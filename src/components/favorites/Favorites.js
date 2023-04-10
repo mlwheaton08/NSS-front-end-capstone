@@ -28,6 +28,7 @@ export const Favorites = () => {
             favoriteArticles.map(favorite => {
                 return <ArticleCard
                     key={`favorite--${favorite.id}`}
+                    location={"browse"}
                     category={favorite.category}
                     subCategory={favorite.subCategory}
                     article={favorite.article}
