@@ -106,9 +106,9 @@ json-server src/data/exampleDB.json -p 8088 -w
 npm start
 ```
 
-5. When attempting to open an article, in your dev tools window you may see an error in the console saying the Wikipedia fetch was blocked by CORS policy. I was able to get around this by installing the Chrome extension **Allow CORS: Access-Control-Allow-Origin**. Make sure to toggle it on. If you're using a different browser, there is probably a similar extension (I believe Mozilla has one).
+*When attempting to open an article, in your dev tools window you may see an error in the console saying the Wikipedia fetch was blocked by CORS policy. I was able to get around this by installing the Chrome extension **Allow CORS: Access-Control-Allow-Origin**. Make sure to toggle it on. If you're using a different browser, there is probably a similar extension (I believe Mozilla has one).*
 
-6. Enjoy the App!
+5. Enjoy the App!
 
 ## Links
 
