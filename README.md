@@ -99,14 +99,16 @@ npm i
 npm i json-server -g
 ```
 
-4. Setup is complete! Use the following commands to run Aimless locally. These commands may have to be run in separate terminal windows.
+4. Use the following commands to run Aimless locally. These commands may have to be run in separate terminal windows.
 
 ```
 json-server src/data/exampleDB.json -p 8088 -w
 npm start
 ```
 
-5. Enjoy the App!
+5. When attempting to open an article, in your dev tools window you may see an error in the console saying the Wikipedia fetch was blocked by CORS policy. I was able to get around this by installing the Chrome extension **Allow CORS: Access-Control-Allow-Origin**. Make sure to toggle it on. If you're using a different browser, there is probably a similar extension (I believe Mozilla has one).
+
+6. Enjoy the App!
 
 ## Links
 
